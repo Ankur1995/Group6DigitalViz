@@ -1,9 +1,9 @@
 // append the svg object to the body of the page
 var svg2 = d3.select("#viz_2")
-.append("svg")
+    .append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
-.append("g")
+    .append("g")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
@@ -74,7 +74,7 @@ function plot2() {
         .append("path")
         .attr("fill", "none")
         .attr("stroke", function (d) { return color(d.key) })
-        .attr("stroke-width", 1.5)
+        .attr("stroke-width", 2)
         .attr("d", function (d) {
             return d3.line()
                 .x(function (d) { return x(d.Year); })
@@ -82,4 +82,51 @@ function plot2() {
                 (d.values)
         })
 
+    // Add the points
+    svg2
+        // First we need to enter in a group
+        .selectAll("myDots")
+        .data(sumstat)
+        .enter()
+        .append('g')
+        .style("fill", function (d) { return color(d.key) })
+        // Second we need to enter in the 'values' part of this group
+        .selectAll("myPoints")
+        .data(function (d) { return d.values })
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) { return x(d.Year) })
+        .attr("cy", function (d) { return y(d.Renewables_Per_Fossils) })
+        .attr("r", 2)
+        .attr("stroke", "white")
+
+    // gridlines in x axis function
+    function make_x_gridlines() {
+        return d3.axisBottom(x)
+            .ticks(10)
+    }
+
+    // gridlines in y axis function
+    function make_y_gridlines() {
+        return d3.axisLeft(y)
+            .ticks(10)
+    }
+
+    // add the X gridlines
+    svg2.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(0," + height + ")")
+        .attr("color", "WhiteSmoke")
+        .call(make_x_gridlines()
+            .tickSize(-height)
+            .tickFormat("")
+        )
+
+    // add the Y gridlines
+    svg2.append("g")
+        .attr("class", "grid")
+        .call(make_y_gridlines()
+            .tickSize(-width)
+            .tickFormat("")
+        )
 }

@@ -20,8 +20,9 @@ function plot1() {
         .attr("x", width / 2)
         .attr("y", margin.top - 70)
         .style("font-size", "24px")
+        .style("font", "Lato")
         .text("Energy Per GDP");
-
+        
     // Add X-axis 
     svg1.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -37,9 +38,10 @@ function plot1() {
     // Add Y axis
     var y = d3.scaleLinear()
         .domain([0.5, d3.max(filtered, function (d) { return d.Energy_Per_GDP })]) // unit: 
-        .range([height, 0]);  // unit: pixels
+        .range([height, 0])  // unit: pixels
     svg1.append("g")
         .call(d3.axisLeft(y))
+
 
     // Add Y axis label:
     svg1.append("text")
@@ -86,9 +88,58 @@ function plot1() {
                 .y(function (d) { return y(d.Energy_Per_GDP); })
                 (d.values)
         })
-        }
+
+
+    // Add the points
+    svg1
+        // First we need to enter in a group
+        .selectAll("myDots")
+        .data(sumstat)
+        .enter()
+        .append('g')
+        .style("fill", function (d) { return color(d.key) })
+        // Second we need to enter in the 'values' part of this group
+        .selectAll("myPoints")
+        .data(function (d) { return d.values })
+        .enter()
+        .append("circle")
+        .attr("cx", function (d) { return x(d.Year) })
+        .attr("cy", function (d) { return y(d.Energy_Per_GDP) })
+        .attr("r", 2)
+        .attr("stroke", "white")
+
+    // gridlines in x axis function
+    function make_x_gridlines() {
+        return d3.axisBottom(x)
+            .ticks(10)
+    }
+
+    // gridlines in y axis function
+    function make_y_gridlines() {
+        return d3.axisLeft(y)
+            .ticks(6)
+    }
+
+    // add the X gridlines
+    svg1.append("g")
+        .attr("class", "grid")
+        .attr("transform", "translate(0," + height + ")")
+        .attr("color", "WhiteSmoke")
+        .call(make_x_gridlines()
+            .tickSize(-height)
+            .tickFormat("")
+        )
+
+    // add the Y gridlines
+    svg1.append("g")
+        .attr("class", "grid")
+        .call(make_y_gridlines()
+            .tickSize(-width)
+            .tickFormat("")
+        )
+// https://bl.ocks.org/d3noob/c506ac45617cf9ed39337f99f8511218
+}
 
 
 
-    
-
+//https://d3-graph-gallery.com/graph/connectedscatter_multi.html
