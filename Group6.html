@@ -10,8 +10,13 @@
 
 <!--Final data-->
 <!--https://govdata360.worldbank.org/indicators/h6779690b?country=BRA&indicator=42573&viz=line_chart&years=2014,2019-->
-<!-- Imports D3 library -->
+<!-- Imports D3 library, annotations, Lato font, and chromatic colour scales -->
 <script charset="utf-8" src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://d3js.org/d3.v4.js"></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
+<script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+<script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>    
 
 <!-- Imports Dimple library -->
 <script charset="utf-8" src="https://cdnjs.cloudflare.com/ajax/libs/dimple/2.3.0/dimple.latest.min.js"></script>
@@ -35,6 +40,11 @@
         <li data-menuanchor="firstPage" class="active"><a href="#firstPage">Home</a></li>
         <li data-menuanchor="secondPage"><a href="#secondPage">Energy Cost</a></li>
         <li data-menuanchor="thirdPage"><a href="#thirdPage">Inflation</a></li>
+        <li data-menuanchor="fourthPage"><a href="#fourthPage">Energy Mix</a></li>
+        <li data-menuanchor="fifthPage"><a href="#fifthPage">UK Import Dependency</a></li>
+        <li data-menuanchor="sixthPage"><a href="#sixthPage">International Import Dependency</a></li>
+        <li data-menuanchor="seventhPage"><a href="#seventhPage">UK Import Sources</a></li>
+        
     </ul>
 
 
@@ -133,11 +143,27 @@
                 </div>
             </div>
         </div>
+        <div class="section">
+            <div id="energy_mix"></div>
+        </div>
+        <div class="section">
+            <div id="uk_import_dependency"></div>
+        </div>
+        <div class="section">
+            <div id="int_import_dependency"></div>
+        </div>
+        <div class="section">
+            <div id="import-source"></div>
+        </div>
     </div>
 
-
+    <script src="Val_Energy_Mix.js"></script>
+    <script src="Val_UK_import_trends.js"></script>
+    <script src="Val_Int_import_dependency.js"></script>
+    <script src="Val_UK_import_sources.js"></script>
     <script src="Ankur_page1.js"></script>
     <script src="Ankur_page2.js"></script>
+    
 
 
     <script>
@@ -147,8 +173,8 @@
         };
         new fullpage('#fullpage', {
             //options here
-            sectionsColor: ['#F1948A', '#FDEDEC', '#FDEDEC', '#FDEDEC'],
-            anchors: ['firstPage', 'secondPage', 'thirdPage'],
+            sectionsColor: ['#F1948A', '#FDEDEC', '#FDEDEC', '#FDEDEC', '#FDEDEC', '#FDEDEC', '#FDEDEC'],
+            anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage', 'sixthPage', 'seventhPage'],
             autoScrolling: true,
             scrollHorizontally: true,
             menu: '#menu',
