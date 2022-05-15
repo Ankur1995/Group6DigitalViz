@@ -3,8 +3,8 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
       height = 700 - margin.top - margin.bottom;
 
       
-  // append the svg object to the body of the page    
-  var svg = d3.select("#import-source")
+  // append the svg_sources object to the body of the page    
+  var svg_sources = d3.select("#import-source")
   .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -26,7 +26,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
         .domain(data.map(function(d) { return d.Type; }))
         .paddingInner(0.74)
         .paddingOuter(0);
-    svg.append("g")
+    svg_sources.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height*2/3 + ")")
         .style("font", "18px sans-serif")
@@ -36,7 +36,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
     var y = d3.scaleLinear()
         .rangeRound([height*2/3, 0])
         .domain([0, 100]).nice();
-    svg.append("g")
+    svg_sources.append("g")
         .attr("class", "axis axis--y")
         .attr("transform","translate(" + width*8.05/10 + ",0)")
         .call(d3.axisRight(y).tickSize(5))
@@ -75,7 +75,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
       .style("opacity", 0)
   }  
       
-    svg.selectAll(".serie")
+    svg_sources.selectAll(".serie")
       .data(stack.keys(cat)(data))
       .enter().append("g")
         .attr("class", "serie")
@@ -99,7 +99,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
     function changed() {
       var value = this.value;
 
-      svg.selectAll(".serie")
+      svg_sources.selectAll(".serie")
         .data(stack.keys(cat)(data_nest.filter(function(d){return +d.key == value})[0].values))
         .selectAll("rect")
         .data(function(d) { return d; })
@@ -112,7 +112,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
   }
       
     // Plot title
-    svg.append("text")
+    svg_sources.append("text")
     .attr("x", width/1000)
     .attr("y", margin.top - 120)
     .attr("text-anchor", "left")
@@ -120,7 +120,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
     .text("% of UK energy imports by energy type" );
       
     // Plot title
-    svg.append("text")
+    svg_sources.append("text")
     .attr("x", 325+width/1000)
     .attr("y", margin.top - 120)
     .attr("text-anchor", "left")
@@ -128,7 +128,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
     .text("% of Oil imports by country of source" ); 
       
     // Plot title
-    svg.append("text")
+    svg_sources.append("text")
     .attr("x", 655+width/1000)
     .attr("y", margin.top - 120)
     .attr("text-anchor", "left")
@@ -137,34 +137,34 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
 
       
         // Handmade for energy types
-        svg.append("circle").attr("cx",135).attr("cy", margin.top - 80).attr("r", 6).style("fill", "MediumSlateBlue")
-        svg.append("circle").attr("cx",135).attr("cy", margin.top - 35).attr("r", 6).style("fill", "#ffd92f")
-        svg.append("circle").attr("cx",135).attr("cy", margin.top + 10).attr("r", 6).style("fill", "Tomato")
-        svg.append("circle").attr("cx",135).attr("cy", margin.top + 55).attr("r", 6).style("fill", "#b3b3b3")
-        svg.append("circle").attr("cx",135).attr("cy", margin.top + 100).attr("r", 6).style("fill", "#e5c594")
-        svg.append("text").attr("x", 153).attr("y", margin.top - 79).text("Petroleum Products").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 153).attr("y", margin.top - 34).text("Oil").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 153).attr("y", margin.top + 11).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 153).attr("y", margin.top + 56).text("Gas").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 153).attr("y", margin.top + 101).text("Nuclear").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top - 80).attr("r", 6).style("fill", "MediumSlateBlue")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top - 35).attr("r", 6).style("fill", "#ffd92f")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 10).attr("r", 6).style("fill", "Tomato")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 55).attr("r", 6).style("fill", "#b3b3b3")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 100).attr("r", 6).style("fill", "#e5c594")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top - 79).text("Petroleum Products").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top - 34).text("Oil").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 11).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 56).text("Gas").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 101).text("Nuclear").style("font-size", "15px").attr("alignment-baseline","middle")
 
         // Handmade legend for countries
-        svg.append("circle").attr("cx",792).attr("cy", margin.top - 50).attr("r", 6).style("fill", "LightSalmon")
-        svg.append("circle").attr("cx",792).attr("cy", margin.top - 20).attr("r", 6).style("fill", "Chocolate")
-        svg.append("circle").attr("cx",792).attr("cy", margin.top + 10).attr("r", 6).style("fill", "ForestGreen")
-        svg.append("circle").attr("cx",792).attr("cy", margin.top + 40).attr("r", 6).style("fill", "Crimson")
-        svg.append("circle").attr("cx",792).attr("cy", margin.top + 70).attr("r", 6).style("fill", "DarkRed")
-        svg.append("circle").attr("cx",792).attr("cy", margin.top + 100).attr("r", 6).style("fill", "MidnightBlue")
-        svg.append("circle").attr("cx",792).attr("cy", margin.top + 130).attr("r", 6).style("fill", "DarkCyan")
-        svg.append("text").attr("x", 810).attr("y", margin.top - 49).text("Algeria").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 810).attr("y", margin.top - 19).text("Netherlands").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 810).attr("y", margin.top + 11).text("Nigeria").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 810).attr("y", margin.top + 41).text("Norway").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 810).attr("y", margin.top + 71).text("Qatar").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 810).attr("y", margin.top + 101).text("Russia").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 810).attr("y", margin.top + 131).text("U.S.A.").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg.append("text").attr("x", 785).attr("y", margin.top + 161).text("Hover over chart").style("font-size", "15px").attr("alignment-baseline","middle").style("fill","#808080")
-        svg.append("text").attr("x", 785).attr("y", margin.top + 176).text("for more detail.").style("font-size", "15px").attr("alignment-baseline","middle").style("fill","#808080")
+        svg_sources.append("circle").attr("cx",792).attr("cy", margin.top - 50).attr("r", 6).style("fill", "LightSalmon")
+        svg_sources.append("circle").attr("cx",792).attr("cy", margin.top - 20).attr("r", 6).style("fill", "Chocolate")
+        svg_sources.append("circle").attr("cx",792).attr("cy", margin.top + 10).attr("r", 6).style("fill", "ForestGreen")
+        svg_sources.append("circle").attr("cx",792).attr("cy", margin.top + 40).attr("r", 6).style("fill", "Crimson")
+        svg_sources.append("circle").attr("cx",792).attr("cy", margin.top + 70).attr("r", 6).style("fill", "DarkRed")
+        svg_sources.append("circle").attr("cx",792).attr("cy", margin.top + 100).attr("r", 6).style("fill", "MidnightBlue")
+        svg_sources.append("circle").attr("cx",792).attr("cy", margin.top + 130).attr("r", 6).style("fill", "DarkCyan")
+        svg_sources.append("text").attr("x", 810).attr("y", margin.top - 49).text("Algeria").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 810).attr("y", margin.top - 19).text("Netherlands").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 810).attr("y", margin.top + 11).text("Nigeria").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 810).attr("y", margin.top + 41).text("Norway").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 810).attr("y", margin.top + 71).text("Qatar").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 810).attr("y", margin.top + 101).text("Russia").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 810).attr("y", margin.top + 131).text("U.S.A.").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 785).attr("y", margin.top + 161).text("Hover over chart").style("font-size", "15px").attr("alignment-baseline","middle").style("fill","#808080")
+        svg_sources.append("text").attr("x", 785).attr("y", margin.top + 176).text("for more detail.").style("font-size", "15px").attr("alignment-baseline","middle").style("fill","#808080")
 
               // Annotations
         const annotations = [
@@ -241,7 +241,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
             .annotations(annotations)
         
         // call the annotations function
-        d3.select("svg")
+        d3.select("svg_sources")
           .append("g")
           .attr("class", "annotation-group")
           .call(makeAnnotations);
