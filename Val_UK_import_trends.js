@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
-var margin = {top: 110, right: 30, bottom: 90, left: 40},
-    width = 900 - margin.left - margin.right,
+var margin = {top: 130, right: 30, bottom: 90, left: 50},
+    width = 1500 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
 
 // append the svg_uk_import object to the body of the page
@@ -12,7 +12,7 @@ var svg_uk_import = d3.select("#uk_import_dependency")
     .attr("transform",
       "translate(" + margin.left + "," + margin.top + ")");
 
-var tooltip = d3.select("body").append("div").attr("class", "toolTip");   
+var tooltip_uk = d3.select("body").append("div").attr("class", "toolTip_uk");   
 
     
 // Parse the Data
@@ -49,13 +49,13 @@ d3.csv("energy-import-data.csv", function(data) {
             // no bar at the beginning thus:
             .attr("y", function(d) { return y(0); })
             .on("mousemove", function(d){
-                tooltip
+                tooltip_uk
                     .style("left", d3.event.pageX - 22 + "px")
                     .style("top", d3.event.pageY - 60 + "px")
                     .style("display", "inline-block")
                     .html("Year: " +(d.Year) + "<br>" + "Imports: " + (d.UK) + "%");
             })
-          .on("mouseout", function(d){ tooltip.style("display", "none");});
+          .on("mouseout", function(d){ tooltip_uk.style("display", "none");});
         
     // Animation
     svg_uk_import.selectAll("rect")
@@ -188,24 +188,24 @@ d3.csv("energy-import-data.csv", function(data) {
     
     // Plot title
     svg_uk_import.append("text")
-    .attr("x", width/2)
-    .attr("y", margin.top - 190)
-    .attr("text-anchor", "middle")
-    .attr("class", "plot-title")
+    .attr("x", 0)
+    .attr("y", margin.top - 180)
+    .attr("text-anchor", "left")
+    .attr("class", "val-plot-title")
     .text("UK energy import dependency: the percentage of UK energy supply made up of net imports, 1970 to 2020");
     
     // Handmade legend
-    svg_uk_import.append("circle").attr("cx",0).attr("cy", margin.top - 150).attr("r", 6).style("fill", "SteelBlue")
-    svg_uk_import.append("circle").attr("cx",120).attr("cy", margin.top - 150).attr("r", 6).style("fill", "DarkCyan")
-    svg_uk_import.append("text").attr("x", 15).attr("y", margin.top - 150).text("Net importer").style("font-size", "15px").attr("alignment-baseline","middle")
-    svg_uk_import.append("text").attr("x", 135).attr("y", margin.top - 150).text("Net exporter").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg_uk_import.append("circle").attr("cx",7).attr("cy", margin.top - 156).attr("r", 6).style("fill", "SteelBlue")
+    svg_uk_import.append("circle").attr("cx",125).attr("cy", margin.top - 156).attr("r", 6).style("fill", "DarkCyan")
+    svg_uk_import.append("text").attr("x", 22).attr("y", margin.top - 155).text("Net importer").style("font-size", "15px").attr("alignment-baseline","middle")
+    svg_uk_import.append("text").attr("x", 140).attr("y", margin.top - 155).text("Net exporter").style("font-size", "15px").attr("alignment-baseline","middle")
     
     // Source text
     svg_uk_import.append("text")
     .attr("x", 0)
     .attr("y", height + margin.bottom/2)
     .attr("text-anchor", "left")
-    .attr("class", "plot-legend")
+    .attr("class", "val-plot-legend")
     .text("Source: Digest of UK Energy Statistics (DUKES) 2021, Department for Business, Energy and Industrial Strategy (BEIS)");
     
            })

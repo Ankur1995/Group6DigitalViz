@@ -1,5 +1,5 @@
-var margin = {top: 110, right: 30, bottom: 90, left: 40},
-    width = 900 - margin.left - margin.right,
+var margin = {top: 130, right: 30, bottom: 90, left: 50},
+    width = 1500 - margin.left - margin.right,
     height = 700 - margin.top - margin.bottom;
 
 // append the svg_energy_mix object to the body of the page
@@ -33,7 +33,7 @@ d3.csv("uk-energy-breakdown.csv", function(data) {
   // Add X axis label:
   svg_energy_mix.append("text")
       .attr("text-anchor", "end")
-      .attr("class", "plot-legend")
+      .attr("class", "val-plot-legend")
       .attr("x", width)
       .attr("y", height + margin.bottom/2 )
       .text("Time (year)");
@@ -58,7 +58,7 @@ d3.csv("uk-energy-breakdown.csv", function(data) {
   var Tooltip = svg_energy_mix
     .append("text")
     .attr("x", 0)
-    .attr("y", -15)
+    .attr("y", -8)
     .style("opacity", 0)
     .style("font-size", "12px")
 
@@ -99,31 +99,31 @@ d3.csv("uk-energy-breakdown.csv", function(data) {
 
     // Plot title
     svg_energy_mix.append("text")
-    .attr("x", width/2)
-    .attr("y", margin.top - 190)
-    .attr("text-anchor", "middle")
-    .attr("class", "plot-title")
-    .text("Energy breakdown: the relative proportions of energy sources in the energy mix, 1965-2020");
+    .attr("x", 0)
+    .attr("y", margin.top - 180)
+    .attr("text-anchor", "left")
+    .attr("class", "val-plot-title")
+    .text("Energy mix: annual consumption of energy types used by the UK, 1965-2020");
     
     // Handmade legend
-        svg_energy_mix.append("circle").attr("cx",0).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#66c2a6")
-        svg_energy_mix.append("circle").attr("cx",120).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#b3b3b3")
-        svg_energy_mix.append("circle").attr("cx",175).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#e5c594")
-        svg_energy_mix.append("circle").attr("cx",245).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#ffd92f")
-        svg_energy_mix.append("circle").attr("cx",310).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#a6d954")
-        svg_energy_mix.append("circle").attr("cx",400).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#e185bd")
-        svg_energy_mix.append("circle").attr("cx",480).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#8da0cc")
-        svg_energy_mix.append("circle").attr("cx",555).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#f3885e")
-        svg_energy_mix.append("circle").attr("cx",630).attr("cy", margin.top - 150).attr("r", 6).style("fill", "#66c0a5")
-        svg_energy_mix.append("text").attr("x", 15).attr("y", margin.top - 150).text("Geo Biomass").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 135).attr("y", margin.top - 150).text("Oil").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 190).attr("y", margin.top - 150).text("Coal").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 260).attr("y", margin.top - 150).text("Gas").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 325).attr("y", margin.top - 150).text("Nuclear").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 415).attr("y", margin.top - 150).text("Hydro").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 495).attr("y", margin.top - 150).text("Wind").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 570).attr("y", margin.top - 150).text("Solar").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_energy_mix.append("text").attr("x", 645).attr("y", margin.top - 150).text("Biofuels").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("circle").attr("cx",7).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#66c2a6")
+        svg_energy_mix.append("circle").attr("cx",127).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#b3b3b3")
+        svg_energy_mix.append("circle").attr("cx",182).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#e5c594")
+        svg_energy_mix.append("circle").attr("cx",252).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#ffd92f")
+        svg_energy_mix.append("circle").attr("cx",317).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#a6d954")
+        svg_energy_mix.append("circle").attr("cx",407).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#e185bd")
+        svg_energy_mix.append("circle").attr("cx",487).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#8da0cc")
+        svg_energy_mix.append("circle").attr("cx",562).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#f3885e")
+        svg_energy_mix.append("circle").attr("cx",637).attr("cy", margin.top - 162).attr("r", 6).style("fill", "#66c0a5")
+        svg_energy_mix.append("text").attr("x", 22).attr("y", margin.top - 161).text("Geo Biomass").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 142).attr("y", margin.top - 161).text("Oil").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 197).attr("y", margin.top - 161).text("Coal").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 267).attr("y", margin.top - 161).text("Gas").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 332).attr("y", margin.top - 161).text("Nuclear").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 422).attr("y", margin.top - 161).text("Hydro").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 502).attr("y", margin.top - 161).text("Wind").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 577).attr("y", margin.top - 161).text("Solar").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_energy_mix.append("text").attr("x", 652).attr("y", margin.top - 161).text("Biofuels").style("font-size", "15px").attr("alignment-baseline","middle")
 
     
     // Source text
@@ -131,7 +131,7 @@ d3.csv("uk-energy-breakdown.csv", function(data) {
     .attr("x", 0)
     .attr("y", height + margin.bottom/2)
     .attr("text-anchor", "left")
-    .attr("class", "plot-legend")
+    .attr("class", "val-plot-legend")
     .text("Source: Statistical Review of World Energy, BP");
 
     

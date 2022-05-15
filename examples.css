@@ -242,3 +242,88 @@ p{
 	z-index: 999;
  }
 
+
+/* Val STYLES
+ * --------------------------------------- */
+
+.bar--positive {
+  fill: SteelBlue;
+}
+
+.bar--negative {
+  fill: DarkCyan;
+}
+
+.grid line {
+  stroke: lightgrey;
+  stroke-opacity: 0.7;
+  shape-rendering: crispEdges;
+}
+
+.grid path {
+  stroke-width: 0;
+}
+
+.toolTip_uk {
+  position: absolute;
+  display: inline;
+  min-width: auto;
+  height: auto;
+  background: rgba(0,0,0,0.6);
+  padding: 5px;
+  text-align: center;
+  color: white;
+  border-radius: 4px;
+}
+
+.toolTip_int {
+  position: absolute;
+  display: inline;
+  min-width: auto;
+  height: auto;
+  background: rgba(0,0,0,0.6);
+  padding: 5px;
+  text-align: center;
+  color: white;
+  border-radius: 4px;
+}
+
+.toolTip_sources {
+  position: absolute;
+  display: inline;
+  min-width: auto;
+  height: auto;
+  background: rgba(0,0,0,0.6);
+  padding: 5px;
+  text-align: center;
+  color: white;
+  border-radius: 4px;
+}
+
+.annotation-note-title, text.title {
+  font-weight: bold;
+}
+
+.val-plot-title {
+    font: 'Lato';
+    font-size: 17px;
+    font-weight: bold;        
+}
+
+.val-plot-legend {
+    font: 'Lato';
+    font-size: 14px;
+    font-weight: bold;        
+}
+
+.axis path, .axis--x line {
+    display: none;
+}
+
+input {
+    position: absolute;
+    left: 605px;
+    top: 510px;
+    width: 220px;
+  }
+

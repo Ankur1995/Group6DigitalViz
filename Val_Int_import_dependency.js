@@ -1,18 +1,18 @@
 // set the dimensions and margins of the graph
-var margin = {top: 110, right: 30, bottom: 90, left: 40},
-width = 900 - margin.left - margin.right,
+var margin = {top: 130, right: 30, bottom: 90, left: 50},
+width = 1500 - margin.left - margin.right,
 height = 700 - margin.top - margin.bottom;
 
 // append the svg_int_import object to the body of the page
 var svg_int_import = d3.select("#int_import_dependency")
 .append("svg")
-.attr("width", width + margin.left + margin.right)
-.attr("height", height + margin.top + margin.bottom)
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
 .append("g")
-.attr("transform",
+    .attr("transform",
   "translate(" + margin.left + "," + margin.top + ")");
 
-var tooltip = d3.select("body").append("div").attr("class", "toolTip");   
+var tooltip_int = d3.select("body").append("div").attr("class", "toolTip_int");   
 
 
 // Parse the Data
@@ -155,30 +155,30 @@ d3.select("svg_int_import")
 
 // Plot title
 svg_int_import.append("text")
-.attr("x", width/2)
-.attr("y", margin.top - 190)
-.attr("text-anchor", "middle")
-.attr("class", "plot-title")
+.attr("x", 0)
+.attr("y", margin.top - 180)
+.attr("text-anchor", "left")
+.attr("class", "val-plot-title")
 .text("Import dependency of case studies: the percentage of  energy supply made up of net imports, 1998 to 2020");
 
 // Handmade legend
-svg_int_import.append("circle").attr("cx",0).attr("cy", margin.top - 150).attr("r", 6).style("fill", "Coral")
-svg_int_import.append("circle").attr("cx",100).attr("cy", margin.top - 150).attr("r", 6).style("fill", "DarkCyan")
-svg_int_import.append("circle").attr("cx",170).attr("cy", margin.top - 150).attr("r", 6).style("fill", "Orchid")
-svg_int_import.append("circle").attr("cx",250).attr("cy", margin.top - 150).attr("r", 6).style("fill", "Orange")
-svg_int_import.append("circle").attr("cx",325).attr("cy", margin.top - 150).attr("r", 6).style("fill", "SteelBlue")
-svg_int_import.append("text").attr("x", 15).attr("y", margin.top - 150).text("Germany").style("font-size", "15px").attr("alignment-baseline","middle")
-svg_int_import.append("text").attr("x", 115).attr("y", margin.top - 150).text("USA").style("font-size", "15px").attr("alignment-baseline","middle")
-svg_int_import.append("text").attr("x", 185).attr("y", margin.top - 150).text("China").style("font-size", "15px").attr("alignment-baseline","middle")
-svg_int_import.append("text").attr("x", 265).attr("y", margin.top - 150).text("India").style("font-size", "15px").attr("alignment-baseline","middle")
-svg_int_import.append("text").attr("x", 340).attr("y", margin.top - 150).text("UK").style("font-size", "15px").attr("alignment-baseline","middle")
+svg_int_import.append("circle").attr("cx",7).attr("cy", margin.top - 156).attr("r", 6).style("fill", "Coral")
+svg_int_import.append("circle").attr("cx",105).attr("cy", margin.top - 156).attr("r", 6).style("fill", "DarkCyan")
+svg_int_import.append("circle").attr("cx",175).attr("cy", margin.top - 156).attr("r", 6).style("fill", "Orchid")
+svg_int_import.append("circle").attr("cx",255).attr("cy", margin.top - 156).attr("r", 6).style("fill", "Orange")
+svg_int_import.append("circle").attr("cx",330).attr("cy", margin.top - 156).attr("r", 6).style("fill", "SteelBlue")
+svg_int_import.append("text").attr("x", 22).attr("y", margin.top - 155).text("Germany").style("font-size", "15px").attr("alignment-baseline","middle")
+svg_int_import.append("text").attr("x", 120).attr("y", margin.top - 155).text("USA").style("font-size", "15px").attr("alignment-baseline","middle")
+svg_int_import.append("text").attr("x", 190).attr("y", margin.top - 155).text("China").style("font-size", "15px").attr("alignment-baseline","middle")
+svg_int_import.append("text").attr("x", 270).attr("y", margin.top - 155).text("India").style("font-size", "15px").attr("alignment-baseline","middle")
+svg_int_import.append("text").attr("x", 345).attr("y", margin.top - 155).text("UK").style("font-size", "15px").attr("alignment-baseline","middle")
 
 // UK Source
 svg_int_import.append("text")
 .attr("x", 0)
 .attr("y", height + margin.bottom/2)
 .attr("text-anchor", "left")
-.attr("class", "plot-legend")
+.attr("class", "val-plot-legend")
 .text("UK Source: Digest of UK Energy Statistics (DUKES) 2021, Department for Business, Energy and Industrial Strategy (BEIS)");
 
 // USA Source
@@ -186,7 +186,7 @@ svg_int_import.append("text")
 .attr("x", 0)
 .attr("y", height + margin.bottom/2 + 20)
 .attr("text-anchor", "left")
-.attr("class", "plot-legend")
+.attr("class", "val-plot-legend")
 .text("USA Source: Table 1.1 Primary Energy Overview, Monthly Energy Review April 2022, U.S. Energy Information Administration");
 
 // USA Source
@@ -194,8 +194,8 @@ svg_int_import.append("text")
 .attr("x", 0)
 .attr("y", height + margin.bottom/2 + 40)
 .attr("text-anchor", "left")
-.attr("class", "plot-legend")
-.text("Germany, China, India Source: Energy imports, net (% of energy use), IEA Statistics");
+.attr("class", "val-plot-legend")
+.text("Germany, China, India Source: Energy imports, net (% of energy use), IEA Statistics. (2014 to current year data not available)");
 
 
 

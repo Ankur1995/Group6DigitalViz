@@ -1,7 +1,6 @@
-var margin = {top: 100, right: 30, bottom: 90, left: 40},
+var margin = {top: 130, right: 30, bottom: 90, left: 30},
       width = 1000 - margin.left - margin.right,
       height = 700 - margin.top - margin.bottom;
-
       
   // append the svg_sources object to the body of the page    
   var svg_sources = d3.select("#import-source")
@@ -12,7 +11,7 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
         .attr("transform",
           "translate(" + margin.left + "," + margin.top + ")");
 
-  var tooltip = d3.select("body").append("div").attr("class", "toolTip");       
+  var tooltip_sources = d3.select("body").append("div").attr("class", "toolTip_sources");       
       
   var stack = d3.stack();
 
@@ -61,17 +60,17 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
     var mouseover = function(d) {
     var energyType = d3.select(this.parentNode).datum().key;
     var fuelvalue = d.data[energyType];
-    tooltip
+    tooltip_sources
         .html(energyType + "<br>" + "Value: " + fuelvalue +"%")
         .style("opacity", 1)
     }
     var mousemove = function(d) {
-    tooltip
+    tooltip_sources
       .style("left", (d3.mouse(this)[0]+90) + "px") // It is important to put the +90: other wise the tooltip is exactly where the point is an it creates a weird effect
       .style("top", (d3.mouse(this)[1])+90 + "px")
     }
     var mouseleave = function(d) {
-    tooltip
+    tooltip_sources
       .style("opacity", 0)
   }  
       
@@ -114,25 +113,25 @@ var margin = {top: 100, right: 30, bottom: 90, left: 40},
     // Plot title
     svg_sources.append("text")
     .attr("x", width/1000)
-    .attr("y", margin.top - 120)
+    .attr("y", margin.top - 150)
     .attr("text-anchor", "left")
-    .attr("class", "plot-title")
+    .attr("class", "val-plot-title")
     .text("% of UK energy imports by energy type" );
       
     // Plot title
     svg_sources.append("text")
-    .attr("x", 325+width/1000)
-    .attr("y", margin.top - 120)
+    .attr("x", 330+width/1000)
+    .attr("y", margin.top - 150)
     .attr("text-anchor", "left")
-    .attr("class", "plot-title")
+    .attr("class", "val-plot-title")
     .text("% of Oil imports by country of source" ); 
       
     // Plot title
     svg_sources.append("text")
-    .attr("x", 655+width/1000)
-    .attr("y", margin.top - 120)
+    .attr("x", 657+width/1000)
+    .attr("y", margin.top - 150)
     .attr("text-anchor", "left")
-    .attr("class", "plot-title")
+    .attr("class", "val-plot-title")
     .text("% of Gas imports by country of source" );  
 
       
