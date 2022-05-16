@@ -107,13 +107,13 @@ function plot1() {
 
     // Add the points
     svg_sun1
-        // First we need to enter in a group
+        // enter in a group
         .selectAll("myDots")
         .data(sumstat)
         .enter()
         .append('g')
-        .style("fill", function (d) { return color(d.key) })
-        // Second we need to enter in the 'values' part of this group
+        .style("fill", "white") //function (d) { return color(d.key) })
+        // enter in the 'values' part of this group
         .selectAll("myPoints")
         .data(function (d) { return d.values })
         .enter()
@@ -121,7 +121,7 @@ function plot1() {
         .attr("cx", function (d) { return x(d.Year) })
         .attr("cy", function (d) { return y(d.Energy_Per_GDP) })
         .attr("r", 2)
-        .attr("stroke", "white")
+        .attr("stroke", function (d) { return color(d.Country) })//"white")
 
     // gridlines in x axis function
     function make_x_gridlines() {

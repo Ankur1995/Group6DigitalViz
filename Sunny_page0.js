@@ -47,7 +47,7 @@ d3.csv(source,
 
         plot1();
         plot2();
-        //plot3();       
+        plot3();       
         
     });
 
