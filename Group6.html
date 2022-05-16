@@ -273,7 +273,7 @@
     
         <!--Bolin from here-->
         <div class="section"> 
-			   <div id="main1"></div>
+			   <div id="main3" ></div>
 			   <text style="text-align:left; font: 'Lato';font-size: 16px; position:absolute; left:1360px; right:25px; top:130px;">
                 When we look at total energy consumption, differences across countries often reflect differences in population size: countries with lots of people inevitably consume more energy than tiny countries.
                 <br> <br>
@@ -294,12 +294,11 @@
       //startOption
 var option ={
   "chartWidth": 1600.0,
-  "chartHeigth": 800.0,
+  "chartHeigth": 720.0,
   "isFullScreen": false,
   "isSvgRender": false,
   "backgroundColor": "transparent",
   "title": {
-	  "font-size": 19,
     "text": "Energy use per person map(kWh),1990-2020"
   },
   "toolbox": {
@@ -18553,19 +18552,19 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
 
       //先处理下全屏与否
       if (option.isFullScreen) {
-        $("#main1").height("100%");
-        $("#main1").width("100%");
+        $("#main3").height("100%");
+        $("#main3").width("100%");
       } else {
-        $("#main1").height(option.chartHeigth);
-        $("#main1").width(option.chartWidth);
+        $("#main3").height(option.chartHeigth);
+        $("#main3").width(option.chartWidth);
       }
 
       //实例化对象
       var myChart;
       if (!option.isSvgRender) {
-        myChart = echarts.init(document.getElementById("main1"));
+        myChart = echarts.init(document.getElementById("main3"));
       } else {
-        myChart = echarts.init(document.getElementById("main1"), null, { renderer: "svg" });
+        myChart = echarts.init(document.getElementById("main3"), null, { renderer: "svg" });
       }
       //绑定echart的resize事件
       windowResizeEvent(() => myChart.resize());
@@ -18666,7 +18665,7 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
 
         </div>
         <div class="section" >  
-                <div id="main2"></div>
+                <div id="main4" ></div>
 				<text style="text-align:left; font: 'Lato';font-size: 16px; position:absolute; left: 1320px; right:20px; top:130px;">
                 Next we focus on four representative countries: the United States, India, the United Kingdom, and China.
                 <br> <br>
@@ -18709,7 +18708,7 @@ var option ={
     "hasMarkArea": false
   },
   "chartWidth": 1400.0,
-  "chartHeigth": 800.0,
+  "chartHeigth": 600.0,
   "isFullScreen": false,
   "isSvgRender": false,
   "backgroundColor": "transparent",
@@ -19466,18 +19465,18 @@ var option ={
 
       //先处理下全屏与否
       if (option.isFullScreen) {
-        $("#main2").height("100%");
-        $("#main2").width("100%");
+        $("#main4").height("100%");
+        $("#main4").width("100%");
       } else {
-        $("#main2").height(option.chartHeigth);
-        $("#main2").width(option.chartWidth);
+        $("#main4").height(option.chartHeigth);
+        $("#main4").width(option.chartWidth);
       }
       //实例化对象
       var myChart;
       if (!option.isSvgRender) {
-        myChart = echarts.init(document.getElementById("main2"));
+        myChart = echarts.init(document.getElementById("main4"));
       } else {
-        myChart = echarts.init(document.getElementById("main2"), null, { renderer: "svg" });
+        myChart = echarts.init(document.getElementById("main4"), null, { renderer: "svg" });
       }
 
       //最开始创建图表
@@ -19954,7 +19953,7 @@ var option ={
         };
         new fullpage('#fullpage', {
             //options here
-            sectionsColor: ['#F1948A', '#FDEDEC', '#FDEDEC', '#f4f4f4', '#f4f4f4', '#f4f4f4', '#f4f4f4', '#f4f4f4', '#f4f4f4', 'white', 'white', 'white', 'white', 'white', 'white', ' ', 'white'],
+            sectionsColor: ['#F1948A', '#FDEDEC', '#FDEDEC', '#f4f4f4', '#f4f4f4', '#f4f4f4', '#f4f4f4', '#f4f4f4', '#f4f4f4', 'white', 'white', 'white', 'white', 'white', 'white'],
             anchors: ['firstPage', 'secondPage', 'thirdPage', 'fourthPage', 'fifthPage', 'sixthPage', 'seventhPage','eighthPage','ninthPage', '12thPage', '13thPage', '14thPage', '15thPage', '16thPage', '', '17thPage'],
             autoScrolling: true,
             scrollHorizontally: true,
