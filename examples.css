@@ -341,10 +341,12 @@ input {
 	.text {
 	margin: 100px; 
 	font-size: 20px;
+	line-height: 1em;
+	float:right;
 	position: relative;   
 	text-align: left; 
 	padding-right: 10px;
-	padding-left: 500px;
+	padding-left: 800px;
 	padding-bottom: 0px;
 	color: rgb(49, 48, 48); 
 	}    
