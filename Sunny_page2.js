@@ -1,52 +1,57 @@
 // set the dimensions and margins of the graph
-var margin = { top: 50, right: 150, bottom: 80, left: 60 },
-    width = 900 - margin.left - margin.right,
-    height = 600 - margin.top - margin.bottom;
+var margin_sun2 = { top: 50, right: 150, bottom: 80, left: 60 },
+    width_sun2 = 900 - margin_sun2.left - margin_sun2.right,
+    height_sun2 = 600 - margin_sun2.top - margin_sun2.bottom;
 
 // append the svg object to the body of the page
-var svg2 = d3.select("#viz_2")
+var svg_sun2 = d3.select("#viz_2")
     .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
+    .attr("width", width_sun2 + margin_sun2.left + margin_sun2.right)
+    .attr("height", height_sun2 + margin_sun2.top + margin_sun2.bottom)
     .append("g")
     .attr("transform",
-        "translate(" + margin.left + "," + margin.top + ")");
+        "translate(" + margin_sun2.left + "," + margin_sun2.top + ")");
 
 function plot2() {
 
     // Add Chart Title
-    svg2.append("text")
+    svg_sun2.append("text")
         .attr("text-anchor", "middle")
-        .attr("x", width / 2)
-        .attr("y", margin.top - 70)
+        .attr("x", width_sun2 / 2)
+        .attr("y", margin_sun2.top - 70)
         .style("font-size", "24px")
         .text("Growing Use of Renewables Compared to Fossil Fuels");
 
+    // Prepare X-axis date format range 
+    var x = d3.scaleTime()
+        .domain(d3.extent(filtered, function (d) { return d.Year; }))
+        .range([0, width_sun2]); // unit: pixels
+
     // Add X-axis 
-    svg2.append("g")
-        .attr("transform", "translate(0," + height + ")")
+    svg_sun2.append("g")
+        .attr("transform", "translate(0," + height_sun2 + ")")
         .call(d3.axisBottom(x))
 
     // Add X axis label:
-    svg2.append("text")
+    svg_sun2.append("text")
         .attr("text-anchor", "end")
-        .attr("x", width)
-        .attr("y", height + margin.top)
+        .attr("x", width_sun2)
+        .attr("y", height_sun2 + margin_sun2.top)
         .text("Year →");
 
     // Add Y axis
     var y = d3.scaleLinear()
         .domain([0, d3.max(filtered, function (d) { return d.Renewables_Per_Fossils })]) // unit: 
-        .range([height, 0]);  // unit: pixels
-    svg2.append("g")
+        .range([height_sun2, 0]);  // unit: pixels
+    svg_sun2.append("g")
         .call(d3.axisLeft(y))
 
     // Add Y axis label:
-    svg2.append("text")
+    svg_sun2.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
-        .attr("y", -margin.left + 20)
-        .attr("x", -margin.top + 40)
+        .attr("y", -margin_sun2.left + 20)
+        .attr("x", -margin_sun2.top + 40)
         .text("Renewable Consumption Per Unit Fossil Fuel Consumption →")
 
     /*
@@ -64,7 +69,7 @@ function plot2() {
     //console.log(sumstat[2].values[sumstat[2].values.length - 1].Energy_Per_GDP)
 
     // Add legend labels
-    svg2.selectAll("mylabels")
+    svg_sun2.selectAll("mylabels")
         .data(sumstat)//res)
         .enter()
         .append("text")
@@ -83,7 +88,7 @@ function plot2() {
     //.style("alignment-baseline", "middle")
 
     // Draw the lines
-    svg2.selectAll(".line")
+    svg_sun2.selectAll(".line")
         .data(sumstat)
         .enter()
         .append("path")
@@ -98,7 +103,7 @@ function plot2() {
         })
 
     // Add the points
-    svg2
+    svg_sun2
         // First we need to enter in a group
         .selectAll("myDots")
         .data(sumstat)
@@ -128,20 +133,20 @@ function plot2() {
     }
 
     // add the X gridlines
-    svg2.append("g")
+    svg_sun2.append("g")
         .attr("class", "grid")
-        .attr("transform", "translate(0," + height + ")")
+        .attr("transform", "translate(0," + height_sun2 + ")")
         .attr("color", "WhiteSmoke")
         .call(make_x_gridlines()
-            .tickSize(-height)
+            .tickSize(-height_sun2)
             .tickFormat("")
         )
 
     // add the Y gridlines
-    svg2.append("g")
+    svg_sun2.append("g")
         .attr("class", "grid")
         .call(make_y_gridlines()
-            .tickSize(-width)
+            .tickSize(-width_sun2)
             .tickFormat("")
         )
 }

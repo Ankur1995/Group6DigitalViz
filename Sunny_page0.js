@@ -2,7 +2,6 @@ var filtered;
 var sumstat;
 var res;
 var color;
-var x;
 var source = 'https://nyc3.digitaloceanspaces.com/owid-public/data/energy/owid-energy-data.csv'
 
 // load csv, filter, and nest
@@ -43,10 +42,7 @@ d3.csv(source,
             .domain(res)
             .range(['DarkOrchid', '#a25032', '#644906', '#2c5272', '#004b4b'])
 
-        // Prepare X-axis date format range 
-        x = d3.scaleTime()
-            .domain(d3.extent(filtered, function (d) { return d.Year; }))
-            .range([0, width]); // unit: pixels
+
 
 
         plot1();

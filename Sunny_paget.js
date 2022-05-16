@@ -1,16 +1,16 @@
 // set the dimensions and margins of the graph
-var margin3 = { top: 50, right: 150, bottom: 100, left: 130 },
-    width3 = 900 - margin3.left - margin3.right,
-    height3 = 300 - margin3.top - margin3.bottom;
+var margin_sun3 = { top: 50, right: 150, bottom: 100, left: 130 },
+    width_sun3 = 900 - margin_sun3.left - margin_sun3.right,
+    height_sun3 = 300 - margin_sun3.top - margin_sun3.bottom;
 
 // append the svg object to the body of the page
 var svgt = d3.select("#viz_t")
     .append("svg")
-    .attr("width", width3 + margin3.left + margin3.right)
-    .attr("height", height3 + margin3.top + margin3.bottom)
+    .attr("width", width_sun3 + margin_sun3.left + margin_sun3.right)
+    .attr("height", height_sun3 + margin_sun3.top + margin_sun3.bottom)
     .append("g")
     .attr("transform",
-        "translate(" + margin3.left + "," + margin3.top + ")");
+        "translate(" + margin_sun3.left + "," + margin_sun3.top + ")");
 
 // Slider
 var formatDateIntoYear = d3.timeFormat("%Y");
@@ -113,31 +113,31 @@ function hue(h) {
             var x1 = d3.scaleLinear()
                 .domain([0.001, xmax])
                 //.domain([-10, 20])
-                .range([width3 / 2, width3]) // unit: pixels
+                .range([width_sun3 / 2, width_sun3]) // unit: pixels
             svgt.append("g")
-                .attr("transform", "translate(0," + height3 + ")")
+                .attr("transform", "translate(0," + height_sun3 + ")")
                 .call(d3.axisBottom(x1))
 
             var xmin = d3.max(filtered, function (d) { return d.Energy_Per_GDP })
             var x2 = d3.scaleLinear()
                 .domain([0, xmin])
                 //.domain([-10, 20])
-                .range([width3 / 2, 0]) // unit: pixels
+                .range([width_sun3 / 2, 0]) // unit: pixels
             svgt.append("g")
-                .attr("transform", "translate(0," + height3 + ")")
+                .attr("transform", "translate(0," + height_sun3 + ")")
                 .call(d3.axisBottom(x2))
 
             // Add X axis label:
             svgt.append("text")
                 .attr("text-anchor", "end")
-                .attr("x", width3)
-                .attr("y", height3 + margin3.top)
+                .attr("x", width_sun3)
+                .attr("y", height_sun3 + margin_sun3.top)
                 .text("← Energy Per GDP ---------------------------------------- Renewables Per Fossils →");
 
             // Add Y axis
             var y = d3.scaleBand()
                 .domain(ear.map(function (d) { return d.Country; })) // unit: 
-                .range([0, height3])  // unit: pixels
+                .range([0, height_sun3])  // unit: pixels
                 .padding(0.1)
             svgt.append("g")
                 //.attr("transform", "translate(" + width3/2 + ", 0 )")
@@ -147,8 +147,8 @@ function hue(h) {
             svgt.append("text")
                 .attr("text-anchor", "end")
                 .attr("transform", "rotate(-90)")
-                .attr("y", -margin3.left + 20)
-                .attr("x", -margin3.top)
+                .attr("y", -margin_sun3.left + 20)
+                .attr("x", -margin_sun3.top)
                 .text("Countries")
 
             //Bars 
