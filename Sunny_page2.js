@@ -1,3 +1,8 @@
+// set the dimensions and margins of the graph
+var margin = { top: 50, right: 150, bottom: 80, left: 60 },
+    width = 900 - margin.left - margin.right,
+    height = 600 - margin.top - margin.bottom;
+
 // append the svg object to the body of the page
 var svg2 = d3.select("#viz_2")
     .append("svg")
@@ -7,7 +12,6 @@ var svg2 = d3.select("#viz_2")
     .attr("transform",
         "translate(" + margin.left + "," + margin.top + ")");
 
-
 function plot2() {
 
     // Add Chart Title
@@ -16,7 +20,7 @@ function plot2() {
         .attr("x", width / 2)
         .attr("y", margin.top - 70)
         .style("font-size", "24px")
-        .text("Renewable Per Unit Fossil Fuel Consumption");
+        .text("Growing Use of Renewables Compared to Fossil Fuels");
 
     // Add X-axis 
     svg2.append("g")
@@ -43,29 +47,40 @@ function plot2() {
         .attr("transform", "rotate(-90)")
         .attr("y", -margin.left + 20)
         .attr("x", -margin.top + 40)
-        .text("Renewable Consumption Per Unit Primary Energy Consumption →")
+        .text("Renewable Consumption Per Unit Fossil Fuel Consumption →")
 
+    /*
     // Add legend symbols
-    svg2.selectAll("mydots")
+    svg1.selectAll("mydots")
         .data(res)
         .enter()
         .append("circle")
         .attr("cx", 700)
         .attr("cy", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
         .attr("r", 7)
-        .style("fill", function (d) { return color(d) })
+        .style("fill", function (d) { return color(d) }) */
+    //console.log(sumstat)
+    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Year)
+    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Energy_Per_GDP)
 
     // Add legend labels
     svg2.selectAll("mylabels")
-        .data(res)
+        .data(sumstat)//res)
         .enter()
         .append("text")
-        .attr("x", 720)
-        .attr("y", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
-        .style("fill", function (d) { return color(d) })
-        .text(function (d) { return d })
-        .attr("text-anchor", "left")
-        .style("alignment-baseline", "middle")
+        .datum(function (d) {
+            return {
+                label: d.key,
+                height: d.values[d.values.length - 1], // keep only the last value of each time series
+            };
+        })
+        .attr("transform", function (d) { return "translate(" + x(d.height.Year) + "," + y(d.height.Renewables_Per_Fossils) + ")"; }) // Put the text at the position of the last point
+        .attr("x", 10)
+        //.attr("y", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
+        .style("fill", function (d) { return color(d.label) }) //return d
+        .text(function (d) { return d.label }) //return d
+    //.attr("text-anchor", "left")
+    //.style("alignment-baseline", "middle")
 
     // Draw the lines
     svg2.selectAll(".line")

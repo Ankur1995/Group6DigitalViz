@@ -21,8 +21,8 @@ function plot1() {
         .attr("y", margin.top - 70)
         .style("font-size", "24px")
         .style("font", "Lato")
-        .text("Energy Per GDP");
-        
+        .text("Decoupling Economic Growth and Energy Use");
+
     // Add X-axis 
     svg1.append("g")
         .attr("transform", "translate(0," + height + ")")
@@ -37,7 +37,7 @@ function plot1() {
 
     // Add Y axis
     var y = d3.scaleLinear()
-        .domain([0.5, d3.max(filtered, function (d) { return d.Energy_Per_GDP })]) // unit: 
+        .domain([0, d3.max(filtered, function (d) { return d.Energy_Per_GDP })]) // unit: 
         .range([height, 0])  // unit: pixels
     svg1.append("g")
         .call(d3.axisLeft(y))
@@ -51,6 +51,7 @@ function plot1() {
         .attr("x", -margin.top + 40)
         .text("Energy Consumption Per Unit GDP →")
 
+    /*
     // Add legend symbols
     svg1.selectAll("mydots")
         .data(res)
@@ -59,20 +60,29 @@ function plot1() {
         .attr("cx", 700)
         .attr("cy", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
         .attr("r", 7)
-        .style("fill", function (d) { return color(d) })
+        .style("fill", function (d) { return color(d) }) */
+    //console.log(sumstat)
+    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Year)
+    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Energy_Per_GDP)
 
     // Add legend labels
     svg1.selectAll("mylabels")
-        .data(res)
+        .data(sumstat)//res)
         .enter()
         .append("text")
-        .attr("x", 720)
-        .attr("y", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
-        .style("fill", function (d) { return color(d) })
-        .text(function (d) { return d })
-        .attr("text-anchor", "left")
-        .style("alignment-baseline", "middle")
-
+        .datum(function (d) {
+            return {
+                label: d.key,
+                height: d.values[d.values.length - 1], // keep only the last value of each time series
+            };
+        })
+        .attr("transform", function (d) { return "translate(" + x(d.height.Year) + "," + y(d.height.Energy_Per_GDP) + ")"; }) // Put the text at the position of the last point
+        .attr("x", 10)
+        //.attr("y", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
+        .style("fill", function (d) { return color(d.label) }) //return d
+        .text(function (d) { return d.label }) //return d
+    //.attr("text-anchor", "left")
+    //.style("alignment-baseline", "middle")
 
     // Draw the lines
     svg1.selectAll(".line")
@@ -123,23 +133,28 @@ function plot1() {
     // add the X gridlines
     svg1.append("g")
         .attr("class", "grid")
+        //.attr("stroke-opacity", 0.2)
+        //.attr("shape-rendering", 'crispEdges')
+        //.attr("stroke-width", 1.3) 
         .attr("transform", "translate(0," + height + ")")
-        .attr("color", "WhiteSmoke")
         .call(make_x_gridlines()
             .tickSize(-height)
             .tickFormat("")
+
+
         )
 
     // add the Y gridlines
     svg1.append("g")
         .attr("class", "grid")
+        //.attr("stroke-opacity", 0.2)
+        //.attr("shape-rendering", 'crispEdges')
+        //.attr("stroke-width", 1.3) 
         .call(make_y_gridlines()
             .tickSize(-width)
             .tickFormat("")
         )
-// https://bl.ocks.org/d3noob/c506ac45617cf9ed39337f99f8511218
+
 }
 
 
-
-//https://d3-graph-gallery.com/graph/connectedscatter_multi.html

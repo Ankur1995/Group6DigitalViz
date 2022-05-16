@@ -11,7 +11,7 @@ d3.csv(source,
         return {
             Country: data.country,
             Year: d3.timeParse("%Y")(data.year),
-
+            
             Energy_Per_GDP: data.energy_per_gdp,
             //GDP: data.gdp,
             //Renewables_Consumption: data.renewables_consumption,
@@ -41,16 +41,18 @@ d3.csv(source,
             .range(['Orchid', 'Coral', 'Darkgoldenrod', 'SteelBlue', 'DarkCyan'])
         color2 = d3.scaleOrdinal()
             .domain(res)
-            .range(['purple', 'pink', 'orange', 'green', 'cyan', '#kplf33', '#a34908', '#z881bf', '#331991'])
+            .range(['DarkOrchid', '#a25032', '#644906', '#2c5272', '#004b4b'])
 
         // Prepare X-axis date format range 
         x = d3.scaleTime()
             .domain(d3.extent(filtered, function (d) { return d.Year; }))
             .range([0, width]); // unit: pixels
 
+
         plot1();
         plot2();
-        //plot3();
+        //plot3();       
+        
     });
 
 
