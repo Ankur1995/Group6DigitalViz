@@ -418,7 +418,7 @@ input {
 	}
 	.timeline .swiper-slide .timeline-year {
 	display: block;
-	font-size: 20px; 
+	font-size: 14px; 
 	transform: translate3d(20px, 0, 0);
 	color: #34495E;
 	font-weight: 300;
@@ -428,7 +428,7 @@ input {
 	}
 	.timeline .swiper-slide .timeline-title {
 	font-weight: 700;
-	font-size: 40px;
+	font-size: 20px;
 	margin: 0 0 0px; 
 	opacity: 0; 
 	padding-right: 50px;
