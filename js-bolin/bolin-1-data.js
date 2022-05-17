@@ -6,8 +6,8 @@
 
       //startOption
 var option ={
-  "chartWidth": 1600.0,
-  "chartHeigth": 700.0,
+  "chartWidth": 1400.0,
+  "chartHeigth": 900.0,
   "isFullScreen": false,
   "isSvgRender": false,
   "backgroundColor": "transparent",

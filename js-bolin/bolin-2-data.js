@@ -24,8 +24,8 @@ var option ={
     "hasMarkLine": false,
     "hasMarkArea": false
   },
-  "chartWidth": 1400.0,
-  "chartHeigth": 600.0,
+  "chartWidth": 1280.0,
+  "chartHeigth": 770.0,
   "isFullScreen": false,
   "isSvgRender": false,
   "backgroundColor": "transparent",
