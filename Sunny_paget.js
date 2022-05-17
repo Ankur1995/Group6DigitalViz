@@ -36,6 +36,10 @@ var slider = svgz.append("g")
     .attr("class", "slider")
     .attr("transform", "translate(" + marginz.left + "," + heightz / 2 + ")")
 
+
+    // 1969 - 1971 
+
+
 slider.append("line")
     .attr("class", "track")
     .attr("x1", x.range()[0])
@@ -132,7 +136,7 @@ function hue(h) {
                 .attr("text-anchor", "end")
                 .attr("x", width_sun3)
                 .attr("y", height_sun3 + margin_sun3.top)
-                .text("← Energy Per GDP ---------------------------------------- Renewables Per Fossils →");
+                .text("← Energy Per GDP ---------------------------------------- Renewables Per Fossil Fuels →");
 
             // Add Y axis
             var y = d3.scaleBand()
