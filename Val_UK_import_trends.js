@@ -102,9 +102,9 @@ d3.csv("energy-import-data.csv", function(data) {
         //can also add a curve type, e.g. curve: d3.curveStep
         points: [[10, -8],[90, -16]]
       },
-      x: 131,
-      y: 195,
-      dy: -21,
+      x: 103,
+      y: 81,
+      dy: -15,
       dx: 120
     }, {
      note: {
@@ -119,8 +119,8 @@ d3.csv("energy-import-data.csv", function(data) {
         //can also add a curve type, e.g. curve: d3.curveStep
         points: [[-35, 35],[-60, 50]]
       },
-      x: 221,
-      y: 443,
+      x: 203,
+      y: 320,
       dy: 55,
       dx: -75   
     }, {
@@ -137,7 +137,7 @@ d3.csv("energy-import-data.csv", function(data) {
         points: [[-10, -35],[-15, -45]]
       },
       x: 382,
-      y: 410,
+      y: 285,
       dy: -55,
       dx: -30      
     }, {
@@ -152,8 +152,8 @@ d3.csv("energy-import-data.csv", function(data) {
         //can also add a curve type, e.g. curve: d3.curveStep
         points: [[-100, 120]]
       },
-      x: 680,
-      y: 220,
+      x: 710,
+      y: 80,
       dy: -5,
       dx: -120    
     }, {
@@ -169,8 +169,8 @@ d3.csv("energy-import-data.csv", function(data) {
         //can also add a curve type, e.g. curve: d3.curveStep
         points: [[-15, 10]]
       },
-      x: 779,
-      y: 443,
+      x: 800,
+      y: 320,
       dy: 20,
       dx: -40    
     }].map(function(d){ d.color = "grey"; return d})
@@ -181,8 +181,8 @@ d3.csv("energy-import-data.csv", function(data) {
         .annotations(annotations)
     
     // call the annotations function
-    d3.select("svg_uk_import")
-      .append("g")
+    //d3.select("svg_uk_import")
+      svg_uk_import.append("g")
       .attr("class", "annotation-group")
       .call(makeAnnotations);
     

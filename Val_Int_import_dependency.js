@@ -72,8 +72,8 @@ const annotations = [
     //can also add a curve type, e.g. curve: d3.curveStep
     points: [[-30, 10]]
   },
-  x: 300,
-  y: 180,
+  x: 270,
+  y: 70,
   dy: 18,
   dx: -100
 }, {
@@ -88,8 +88,8 @@ const annotations = [
     //can also add a curve type, e.g. curve: d3.curveStep
     points: [[60, 15]]
   },
-  x: 260,
-  y: 510,
+  x: 235,
+  y: 385,
   dy: 25,
   dx: 150   
 }, {
@@ -104,8 +104,8 @@ const annotations = [
     //can also add a curve type, e.g. curve: d3.curveStep
     points: [[50, 0]]
   },
-  x: 630,
-  y: 308,
+  x: 665,
+  y: 188,
   dy: 30,
   dx: 130      
 }, {
@@ -120,8 +120,8 @@ const annotations = [
     //can also add a curve type, e.g. curve: d3.curveStep
     points: [[0, 0]]
   },
-  x: 670,
-  y: 270,
+  x: 720,
+  y: 155,
   dy: -10,
   dx: 80    
 }, {
@@ -136,8 +136,8 @@ const annotations = [
     //can also add a curve type, e.g. curve: d3.curveStep
     points: [[-15, 10]]
   },
-  x: 785,
-  y: 505,
+  x: 850,
+  y: 378,
   dy: 1,
   dx: -60    
 }].map(function(d){ d.color = "grey"; return d})
@@ -148,8 +148,8 @@ const makeAnnotations = d3.annotation()
     .annotations(annotations)
 
 // call the annotations function
-d3.select("svg_int_import")
-  .append("g")
+// d3.select("svg_int_import")
+  svg_int_import.append("g")
   .attr("class", "annotation-group")
   .call(makeAnnotations);
 

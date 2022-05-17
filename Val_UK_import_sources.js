@@ -136,16 +136,16 @@ var margin = {top: 130, right: 30, bottom: 90, left: 30},
 
       
         // Handmade for energy types
-        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top - 80).attr("r", 6).style("fill", "MediumSlateBlue")
-        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top - 35).attr("r", 6).style("fill", "#ffd92f")
-        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 10).attr("r", 6).style("fill", "Tomato")
-        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 55).attr("r", 6).style("fill", "#b3b3b3")
-        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 100).attr("r", 6).style("fill", "#e5c594")
-        svg_sources.append("text").attr("x", 153).attr("y", margin.top - 79).text("Petroleum Products").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_sources.append("text").attr("x", 153).attr("y", margin.top - 34).text("Oil").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 11).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 56).text("Gas").style("font-size", "15px").attr("alignment-baseline","middle")
-        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 101).text("Nuclear").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top - 120).attr("r", 6).style("fill", "MediumSlateBlue")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top - 75).attr("r", 6).style("fill", "#ffd92f")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top - 30).attr("r", 6).style("fill", "Tomato")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 15).attr("r", 6).style("fill", "#b3b3b3")
+        svg_sources.append("circle").attr("cx",135).attr("cy", margin.top + 60).attr("r", 6).style("fill", "#e5c594")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top - 119).text("Petroleum Products").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top - 74).text("Oil").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top - 29).text("Electricity").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 16).text("Gas").style("font-size", "15px").attr("alignment-baseline","middle")
+        svg_sources.append("text").attr("x", 153).attr("y", margin.top + 61).text("Nuclear").style("font-size", "15px").attr("alignment-baseline","middle")
 
         // Handmade legend for countries
         svg_sources.append("circle").attr("cx",792).attr("cy", margin.top - 50).attr("r", 6).style("fill", "LightSalmon")
@@ -179,8 +179,8 @@ var margin = {top: 130, right: 30, bottom: 90, left: 30},
             //can also add a curve type, e.g. curve: d3.curveStep
             points: [[10, 0],[80, -10]]
           },
-          x: 460,
-          y: 280,
+          x: 425,
+          y: 150,
           dy: -21,
           dx: 120
         }, {
@@ -195,8 +195,8 @@ var margin = {top: 130, right: 30, bottom: 90, left: 30},
             //can also add a curve type, e.g. curve: d3.curveStep
             points: [[-10, 0],[-80, -10]]
           },
-          x: 693,
-          y: 280,
+          x: 657,
+          y: 150,
           dy: -21,
           dx: -110
         }, {
@@ -212,8 +212,8 @@ var margin = {top: 130, right: 30, bottom: 90, left: 30},
             //can also add a curve type, e.g. curve: d3.curveStep
             points: [[0,0]]
           },
-          x: 580,
-          y: 400,
+          x: 542,
+          y: 270,
           dy: -1,
           dx: 0
         }, {
@@ -228,8 +228,8 @@ var margin = {top: 130, right: 30, bottom: 90, left: 30},
             //can also add a curve type, e.g. curve: d3.curveStep
             points: [[50,15],[80,30]]
           },
-          x: 130,
-          y: 310,
+          x: 93,
+          y: 190,
           dy: 54,
           dx: 116
         } ].map(function(d){ d.color = "grey"; return d})
@@ -240,8 +240,8 @@ var margin = {top: 130, right: 30, bottom: 90, left: 30},
             .annotations(annotations)
         
         // call the annotations function
-        d3.select("svg_sources")
-          .append("g")
+        //d3.select("svg_sources")
+          svg_sources.append("g")
           .attr("class", "annotation-group")
           .call(makeAnnotations);
 
