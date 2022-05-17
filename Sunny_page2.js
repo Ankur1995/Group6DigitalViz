@@ -149,4 +149,10 @@ function plot2() {
             .tickSize(-width_sun2)
             .tickFormat("")
         )
+
+
+
+
+
+
 }

@@ -77,7 +77,7 @@ inflation_data = [
 
 
 function createLineChart(data, container_name) {
-    var svg = dimple.newSvg(container_name, 1500, 600);
+    var svg = dimple.newSvg(container_name, 1450, 600);
 
     // Constructs chart from SVG object and list of data
     var myChart = new dimple.chart(svg, data)
