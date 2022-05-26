@@ -102,29 +102,20 @@ function hue(h) {
                 //years[50].toString() + "-01-01 00:00:00"
                 //"2017-01-01 00:00:00"
             })
-
-            // Add Chart Title 
-            /*
-            svgt.append("text")
-                .attr("text-anchor", "middle")
-                .attr("x", width3 / 2)
-                .attr("y", margin3.top - 70)
-                .style("font-size", "24px")
-                .text("Compare"); 
-                */
-
+            // Add X axis Renewables
             var xmax = d3.max(filtered, function (d) { return d.Renewables_Per_Fossils })
             var x1 = d3.scaleLinear()
-                .domain([0.001, xmax])
+                .domain([0.001, xmax + 1])
                 //.domain([-10, 20])
                 .range([width_sun3 / 2, width_sun3]) // unit: pixels
             svgt.append("g")
                 .attr("transform", "translate(0," + height_sun3 + ")")
                 .call(d3.axisBottom(x1))
-
+            
+            // Add X axis Energy per GDP
             var xmin = d3.max(filtered, function (d) { return d.Energy_Per_GDP })
             var x2 = d3.scaleLinear()
-                .domain([0, xmin])
+                .domain([0, xmin + 1])
                 //.domain([-10, 20])
                 .range([width_sun3 / 2, 0]) // unit: pixels
             svgt.append("g")

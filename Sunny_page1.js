@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
-var margin_sun1 = { top: 50, right: 150, bottom: 80, left: 60 },
-    width_sun1 = 900 - margin_sun1.left - margin_sun1.right,
+var margin_sun1 = { top: 100, right: 150, bottom: 50, left: 60 },
+    width_sun1 = 1300 - margin_sun1.left - margin_sun1.right,
     height_sun1 = 600 - margin_sun1.top - margin_sun1.bottom;
 
 // append the svg object to the body of the page
@@ -18,7 +18,7 @@ function plot1() {
     svg_sun1.append("text")
         .attr("text-anchor", "middle")
         .attr("x", width_sun1 / 2)
-        .attr("y", margin_sun1.top - 70)
+        .attr("y", -50)
         .style("font-size", "24px")
         .style("font", "Lato")
         .text("Decoupling Economic Growth and Energy Use");
@@ -36,8 +36,8 @@ function plot1() {
     // Add X axis label:
     svg_sun1.append("text")
         .attr("text-anchor", "end")
-        .attr("x", width_sun1)
-        .attr("y", height_sun1 + margin_sun1.top)
+        .attr("x", width_sun1)  
+        .attr("y", height_sun1 + 50)
         .text("Year →");
 
     // Add Y axis
@@ -47,28 +47,13 @@ function plot1() {
     svg_sun1.append("g")
         .call(d3.axisLeft(y))
 
-
     // Add Y axis label:
     svg_sun1.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
-        .attr("y", -margin_sun1.left + 20)
-        .attr("x", -margin_sun1.top + 40)
+        .attr("y", -margin_sun1.left + 15)
+        .attr("x", -margin_sun1.top + 100)
         .text("Energy Consumption Per Unit GDP →")
-
-    /*
-    // Add legend symbols
-    svg1.selectAll("mydots")
-        .data(res)
-        .enter()
-        .append("circle")
-        .attr("cx", 700)
-        .attr("cy", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
-        .attr("r", 7)
-        .style("fill", function (d) { return color(d) }) */
-    //console.log(sumstat)
-    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Year)
-    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Energy_Per_GDP)
 
     // Add legend labels
     svg_sun1.selectAll("mylabels")
@@ -83,11 +68,8 @@ function plot1() {
         })
         .attr("transform", function (d) { return "translate(" + x(d.height.Year) + "," + y(d.height.Energy_Per_GDP) + ")"; }) // Put the text at the position of the last point
         .attr("x", 10)
-        //.attr("y", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
         .style("fill", function (d) { return color(d.label) }) //return d
         .text(function (d) { return d.label }) //return d
-    //.attr("text-anchor", "left")
-    //.style("alignment-baseline", "middle")
 
     // Draw the lines
     svg_sun1.selectAll(".line")
@@ -104,6 +86,10 @@ function plot1() {
                 (d.values)
         })
 
+    // Define the div for the tooltip
+    var divtip1 = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
 
     // Add the points
     svg_sun1
@@ -112,7 +98,7 @@ function plot1() {
         .data(sumstat)
         .enter()
         .append('g')
-        .style("fill", "white") //function (d) { return color(d.key) })
+        .style("fill", "white")
         // enter in the 'values' part of this group
         .selectAll("myPoints")
         .data(function (d) { return d.values })
@@ -120,8 +106,21 @@ function plot1() {
         .append("circle")
         .attr("cx", function (d) { return x(d.Year) })
         .attr("cy", function (d) { return y(d.Energy_Per_GDP) })
-        .attr("r", 2)
-        .attr("stroke", function (d) { return color(d.Country) })//"white")
+        .attr("r", 3)
+        .attr("stroke", function (d) { return color(d.Country) })
+        .on("mouseover", function (d) {
+            divtip1.transition()
+                .duration(200)
+                .style("opacity", .9);
+            divtip1.html("Energy Per GDP: " + d.Energy_Per_GDP)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 50) + "px");
+        })
+        .on("mouseout", function (d) {
+            divtip1.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
 
     // gridlines in x axis function
     function make_x_gridlines() {
@@ -138,9 +137,6 @@ function plot1() {
     // add the X gridlines
     svg_sun1.append("g")
         .attr("class", "grid")
-        //.attr("stroke-opacity", 0.2)
-        //.attr("shape-rendering", 'crispEdges')
-        //.attr("stroke-width", 1.3) 
         .attr("transform", "translate(0," + height_sun1 + ")")
         .call(make_x_gridlines()
             .tickSize(-height_sun1)
@@ -149,14 +145,12 @@ function plot1() {
 
     // add the Y gridlines
     svg_sun1.append("g")
-        .attr("class", "grid")
-        //.attr("stroke-opacity", 0.2)
-        //.attr("shape-rendering", 'crispEdges')
-        //.attr("stroke-width", 1.3) 
+        .attr("class", "grid") 
         .call(make_y_gridlines()
             .tickSize(-width_sun1)
             .tickFormat("")
         )
+
 
 }
 

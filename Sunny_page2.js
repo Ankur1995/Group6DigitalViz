@@ -1,6 +1,6 @@
 // set the dimensions and margins of the graph
-var margin_sun2 = { top: 50, right: 150, bottom: 80, left: 60 },
-    width_sun2 = 900 - margin_sun2.left - margin_sun2.right,
+var margin_sun2 = { top: 100, right: 150, bottom: 50, left: 60 },
+    width_sun2 = 1300 - margin_sun2.left - margin_sun2.right,
     height_sun2 = 600 - margin_sun2.top - margin_sun2.bottom;
 
 // append the svg object to the body of the page
@@ -18,8 +18,9 @@ function plot2() {
     svg_sun2.append("text")
         .attr("text-anchor", "middle")
         .attr("x", width_sun2 / 2)
-        .attr("y", margin_sun2.top - 70)
+        .attr("y", -50)
         .style("font-size", "24px")
+        .style("font", "Lato")
         .text("Growing Use of Renewables Compared to Fossil Fuels");
 
     // Prepare X-axis date format range 
@@ -36,7 +37,7 @@ function plot2() {
     svg_sun2.append("text")
         .attr("text-anchor", "end")
         .attr("x", width_sun2)
-        .attr("y", height_sun2 + margin_sun2.top)
+        .attr("y", height_sun2 + 50)
         .text("Year →");
 
     // Add Y axis
@@ -50,23 +51,9 @@ function plot2() {
     svg_sun2.append("text")
         .attr("text-anchor", "end")
         .attr("transform", "rotate(-90)")
-        .attr("y", -margin_sun2.left + 20)
-        .attr("x", -margin_sun2.top + 40)
+        .attr("y", -margin_sun2.left + 15)
+        .attr("x", -margin_sun2.top + 100)
         .text("Renewable Consumption Per Unit Fossil Fuel Consumption →")
-
-    /*
-    // Add legend symbols
-    svg1.selectAll("mydots")
-        .data(res)
-        .enter()
-        .append("circle")
-        .attr("cx", 700)
-        .attr("cy", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
-        .attr("r", 7)
-        .style("fill", function (d) { return color(d) }) */
-    //console.log(sumstat)
-    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Year)
-    //console.log(sumstat[2].values[sumstat[2].values.length - 1].Energy_Per_GDP)
 
     // Add legend labels
     svg_sun2.selectAll("mylabels")
@@ -81,11 +68,8 @@ function plot2() {
         })
         .attr("transform", function (d) { return "translate(" + x(d.height.Year) + "," + y(d.height.Renewables_Per_Fossils) + ")"; }) // Put the text at the position of the last point
         .attr("x", 10)
-        //.attr("y", function (d, i) { return 25 + i * 25 }) // where the first dot appears, distance between dots
         .style("fill", function (d) { return color(d.label) }) //return d
         .text(function (d) { return d.label }) //return d
-    //.attr("text-anchor", "left")
-    //.style("alignment-baseline", "middle")
 
     // Draw the lines
     svg_sun2.selectAll(".line")
@@ -102,6 +86,11 @@ function plot2() {
                 (d.values)
         })
 
+    // Define the div for the tooltip
+    var divtip2 = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("opacity", 0);
+
     // Add the points
     svg_sun2
         // enter in a group
@@ -109,7 +98,7 @@ function plot2() {
         .data(sumstat)
         .enter()
         .append('g')
-        .style("fill", "white") //function (d) { return color(d.key) })
+        .style("fill", "white") 
         // enter in the 'values' part of this group
         .selectAll("myPoints")
         .data(function (d) { return d.values })
@@ -117,8 +106,21 @@ function plot2() {
         .append("circle")
         .attr("cx", function (d) { return x(d.Year) })
         .attr("cy", function (d) { return y(d.Renewables_Per_Fossils) })
-        .attr("r", 2)
-        .attr("stroke", function (d) { return color(d.Country) })//"white")
+        .attr("r", 3)
+        .attr("stroke", function (d) { return color(d.Country) })
+        .on("mouseover", function (d) {
+            divtip2.transition()
+                .duration(200)
+                .style("opacity", .9);
+            divtip2.html("Renewables Per Fossils: " + d.Renewables_Per_Fossils)
+                .style("left", (d3.event.pageX) + "px")
+                .style("top", (d3.event.pageY - 50) + "px");
+        })
+        .on("mouseout", function (d) {
+            divtip2.transition()
+                .duration(500)
+                .style("opacity", 0);
+        });
 
     // gridlines in x axis function
     function make_x_gridlines() {
