@@ -36,10 +36,6 @@ var slider = svgz.append("g")
     .attr("class", "slider")
     .attr("transform", "translate(" + marginz.left + "," + heightz / 2 + ")")
 
-
-    // 1969 - 1971 
-
-
 slider.append("line")
     .attr("class", "track")
     .attr("x1", x.range()[0])
@@ -105,7 +101,7 @@ function hue(h) {
             // Add X axis Renewables
             var xmax = d3.max(filtered, function (d) { return d.Renewables_Per_Fossils })
             var x1 = d3.scaleLinear()
-                .domain([0.001, xmax + 1])
+                .domain([0.001, xmax])
                 //.domain([-10, 20])
                 .range([width_sun3 / 2, width_sun3]) // unit: pixels
             svgt.append("g")
@@ -115,7 +111,7 @@ function hue(h) {
             // Add X axis Energy per GDP
             var xmin = d3.max(filtered, function (d) { return d.Energy_Per_GDP })
             var x2 = d3.scaleLinear()
-                .domain([0, xmin + 1])
+                .domain([0, xmin])
                 //.domain([-10, 20])
                 .range([width_sun3 / 2, 0]) // unit: pixels
             svgt.append("g")
