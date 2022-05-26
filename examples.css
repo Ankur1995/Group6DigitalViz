@@ -377,7 +377,7 @@ input {
 	padding-bottom: 50px; 
 	}
 	.text {
-	margin: 100px; 
+	margin: 0px; 
 	font-size: 20px;
 	float:right;
 	position: relative;   
@@ -858,5 +858,6 @@ input {
       right: 25%; 
       }
 
+	  
 
 	
