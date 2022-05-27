@@ -5,14 +5,17 @@
       }
 
       //startOption
+var margin_ybl1 = {top: window.innerHeight*0.12, right: window.innerWidth*0.22, bottom: 10, left: 3};
+var width_ybl1 = window.innerWidth - margin_ybl1.left - margin_ybl1.right;
+var height_ybl1 = window.innerHeight - margin_ybl1.top - margin_ybl1.bottom;
 var option ={
-  "chartWidth": 1400.0,
-  "chartHeigth": 900.0,
+  "chartWidth": width_ybl1,
+  "chartHeigth": height_ybl1,
   "isFullScreen": false,
   "isSvgRender": false,
   "backgroundColor": "transparent",
   "title": {
-    "text": "Energy use per person map(kWh),1990-2020"
+    "text": "Energy use per person map(kWh),1990-2019"
   },
   "toolbox": {
     "show": false,
@@ -17564,545 +17567,6 @@ var option ={
         "Zimbabwe",
         3374.877
       ],
-      [
-        2020.0,
-        "阿尔及利亚",
-        "Algeria\n14560.575",
-        "Algeria",
-        14560.575
-      ],
-      [
-        2020.0,
-        "阿根廷",
-        "Argentina\n19351.623",
-        "Argentina",
-        19351.623
-      ],
-      [
-        2020.0,
-        "澳大利亚",
-        "Australia\n60660.293",
-        "Australia",
-        60660.293
-      ],
-      [
-        2020.0,
-        "奥地利",
-        "Austria\n42676.308",
-        "Austria",
-        42676.308
-      ],
-      [
-        2020.0,
-        "阿塞拜疆",
-        "Azerbaijan\n17037.319",
-        "Azerbaijan",
-        17037.319
-      ],
-      [
-        2020.0,
-        "孟加拉",
-        "Bangladesh\n2684.575",
-        "Bangladesh",
-        2684.575
-      ],
-      [
-        2020.0,
-        "白俄罗斯",
-        "Belarus\n28871.065",
-        "Belarus",
-        28871.065
-      ],
-      [
-        2020.0,
-        "比利时",
-        "Belgium\n52509.636",
-        "Belgium",
-        52509.636
-      ],
-      [
-        2020.0,
-        "巴西",
-        "Brazil\n15692.344",
-        "Brazil",
-        15692.344
-      ],
-      [
-        2020.0,
-        "保加利亚",
-        "Bulgaria\n27581.901",
-        "Bulgaria",
-        27581.901
-      ],
-      [
-        2020.0,
-        "加拿大",
-        "Canada\n100309.524",
-        "Canada",
-        100309.524
-      ],
-      [
-        2020.0,
-        "智利",
-        "Chile\n23348.403",
-        "Chile",
-        23348.403
-      ],
-      [
-        2020.0,
-        "中国",
-        "China\n28071.824",
-        "China",
-        28071.824
-      ],
-      [
-        2020.0,
-        "哥伦比亚",
-        "Colombia\n9648.333",
-        "Colombia",
-        9648.333
-      ],
-      [
-        2020.0,
-        "克罗地亚",
-        "Croatia\n22105.103",
-        "Croatia",
-        22105.103
-      ],
-      [
-        2020.0,
-        "塞浦路斯",
-        "Cyprus\n23358.362",
-        "Cyprus",
-        23358.362
-      ],
-      [
-        2020.0,
-        "捷克",
-        "Czech Republic\n39882.98",
-        "Czech Republic",
-        39882.98
-      ],
-      [
-        2020.0,
-        "丹麦",
-        "Denmark\n28313.54",
-        "Denmark",
-        28313.54
-      ],
-      [
-        2020.0,
-        "厄瓜多尔",
-        "Ecuador\n10157.683",
-        "Ecuador",
-        10157.683
-      ],
-      [
-        2020.0,
-        "埃及",
-        "Egypt\n9899.44",
-        "Egypt",
-        9899.44
-      ],
-      [
-        2020.0,
-        "爱沙尼亚",
-        "Estonia\n39024.296",
-        "Estonia",
-        39024.296
-      ],
-      [
-        2020.0,
-        "芬兰",
-        "Finland\n54961.547",
-        "Finland",
-        54961.547
-      ],
-      [
-        2020.0,
-        "法国",
-        "France\n37040.828",
-        "France",
-        37040.828
-      ],
-      [
-        2020.0,
-        "德国",
-        "Germany\n40152.984",
-        "Germany",
-        40152.984
-      ],
-      [
-        2020.0,
-        "希腊",
-        "Greece\n26658.55",
-        "Greece",
-        26658.55
-      ],
-      [
-        2020.0,
-        "匈牙利",
-        "Hungary\n27833.522",
-        "Hungary",
-        27833.522
-      ],
-      [
-        2020.0,
-        "冰岛",
-        "Iceland\n167175.409",
-        "Iceland",
-        167175.409
-      ],
-      [
-        2020.0,
-        "印度",
-        "India\n6437.936",
-        "India",
-        6437.936
-      ],
-      [
-        2020.0,
-        "印尼",
-        "Indonesia\n7752.6",
-        "Indonesia",
-        7752.6
-      ],
-      [
-        2020.0,
-        "伊朗",
-        "Iran\n39785.35",
-        "Iran",
-        39785.35
-      ],
-      [
-        2020.0,
-        "伊拉克",
-        "Iraq\n14245.68",
-        "Iraq",
-        14245.68
-      ],
-      [
-        2020.0,
-        "爱尔兰",
-        "Ireland\n34600.01",
-        "Ireland",
-        34600.01
-      ],
-      [
-        2020.0,
-        "以色列",
-        "Israel\n33624.581",
-        "Israel",
-        33624.581
-      ],
-      [
-        2020.0,
-        "意大利",
-        "Italy\n26935.966",
-        "Italy",
-        26935.966
-      ],
-      [
-        2020.0,
-        "日本",
-        "Japan\n37402.909",
-        "Japan",
-        37402.909
-      ],
-      [
-        2020.0,
-        "哈萨克斯坦",
-        "Kazakhstan\n45950.324",
-        "Kazakhstan",
-        45950.324
-      ],
-      [
-        2020.0,
-        "科威特",
-        "Kuwait\n98021.053",
-        "Kuwait",
-        98021.053
-      ],
-      [
-        2020.0,
-        "拉脱维亚",
-        "Latvia\n21369.546",
-        "Latvia",
-        21369.546
-      ],
-      [
-        2020.0,
-        "立陶宛",
-        "Lithuania\n25365.039",
-        "Lithuania",
-        25365.039
-      ],
-      [
-        2020.0,
-        "卢森堡",
-        "Luxembourg\n63726.112",
-        "Luxembourg",
-        63726.112
-      ],
-      [
-        2020.0,
-        "马来西亚",
-        "Malaysia\n35295.966",
-        "Malaysia",
-        35295.966
-      ],
-      [
-        2020.0,
-        "墨西哥",
-        "Mexico\n13951.862",
-        "Mexico",
-        13951.862
-      ],
-      [
-        2020.0,
-        "摩洛哥",
-        "Morocco\n6607.388",
-        "Morocco",
-        6607.388
-      ],
-      [
-        2020.0,
-        "荷兰",
-        "Netherlands\n54673.362",
-        "Netherlands",
-        54673.362
-      ],
-      [
-        2020.0,
-        "新西兰",
-        "New Zealand\n48413.68",
-        "New Zealand",
-        48413.68
-      ],
-      [
-        2020.0,
-        "马其顿",
-        "Macedonia\n13582.355",
-        "Macedonia",
-        13582.355
-      ],
-      [
-        2020.0,
-        "挪威",
-        "Norway\n98879.418",
-        "Norway",
-        98879.418
-      ],
-      [
-        2020.0,
-        "阿曼",
-        "Oman\n74513.602",
-        "Oman",
-        74513.602
-      ],
-      [
-        2020.0,
-        "巴基斯坦",
-        "Pakistan\n4368.891",
-        "Pakistan",
-        4368.891
-      ],
-      [
-        2020.0,
-        "秘鲁",
-        "Peru\n8399.715",
-        "Peru",
-        8399.715
-      ],
-      [
-        2020.0,
-        "菲律宾",
-        "Philippines\n4626.2",
-        "Philippines",
-        4626.2
-      ],
-      [
-        2020.0,
-        "波兰",
-        "Poland\n29453.211",
-        "Poland",
-        29453.211
-      ],
-      [
-        2020.0,
-        "葡萄牙",
-        "Portugal\n25404.71",
-        "Portugal",
-        25404.71
-      ],
-      [
-        2020.0,
-        "卡塔尔",
-        "Qatar\n165044.292",
-        "Qatar",
-        165044.292
-      ],
-      [
-        2020.0,
-        "罗马尼亚",
-        "Romania\n19220.151",
-        "Romania",
-        19220.151
-      ],
-      [
-        2020.0,
-        "俄罗斯",
-        "Russia\n53895.194",
-        "Russia",
-        53895.194
-      ],
-      [
-        2020.0,
-        "沙特阿拉伯",
-        "Saudi Arabia\n84261.772",
-        "Saudi Arabia",
-        84261.772
-      ],
-      [
-        2020.0,
-        "新加坡",
-        "Singapore\n162191.999",
-        "Singapore",
-        162191.999
-      ],
-      [
-        2020.0,
-        "斯洛伐克",
-        "Slovakia\n31696.583",
-        "Slovakia",
-        31696.583
-      ],
-      [
-        2020.0,
-        "斯洛文尼亚",
-        "Slovenia\n35850.297",
-        "Slovenia",
-        35850.297
-      ],
-      [
-        2020.0,
-        "南非",
-        "South Africa\n22958.51",
-        "South Africa",
-        22958.51
-      ],
-      [
-        2020.0,
-        "韩国 南朝鲜",
-        "South Korea\n63865.188",
-        "South Korea",
-        63865.188
-      ],
-      [
-        2020.0,
-        "西班牙",
-        "Spain\n29540.995",
-        "Spain",
-        29540.995
-      ],
-      [
-        2020.0,
-        "斯里兰卡",
-        "Sri Lanka\n4237.282",
-        "Sri Lanka",
-        4237.282
-      ],
-      [
-        2020.0,
-        "瑞典",
-        "Sweden\n60494.342",
-        "Sweden",
-        60494.342
-      ],
-      [
-        2020.0,
-        "瑞士",
-        "Switzerland\n34596.661",
-        "Switzerland",
-        34596.661
-      ],
-      [
-        2020.0,
-        "泰国",
-        "Thailand\n20370.287",
-        "Thailand",
-        20370.287
-      ],
-      [
-        2020.0,
-        "特立尼达和多巴哥",
-        "Trinidad and Tobago\n123799.685",
-        "Trinidad and Tobago",
-        123799.685
-      ],
-      [
-        2020.0,
-        "土耳其",
-        "Turkey\n20715.625",
-        "Turkey",
-        20715.625
-      ],
-      [
-        2020.0,
-        "土库曼斯坦",
-        "Turkmenistan\n64639.236",
-        "Turkmenistan",
-        64639.236
-      ],
-      [
-        2020.0,
-        "乌克兰",
-        "Ukraine\n21048.438",
-        "Ukraine",
-        21048.438
-      ],
-      [
-        2020.0,
-        "阿联酋",
-        "United Arab Emirates\n117685.602",
-        "United Arab Emirates",
-        117685.602
-      ],
-      [
-        2020.0,
-        "英国",
-        "United Kingdom\n28211.222",
-        "United Kingdom",
-        28211.222
-      ],
-      [
-        2020.0,
-        "美国",
-        "United States of America\n73677.319",
-        "United States of America",
-        73677.319
-      ],
-      [
-        2020.0,
-        "乌兹别克斯坦",
-        "Uzbekistan\n15542.044",
-        "Uzbekistan",
-        15542.044
-      ],
-      [
-        2020.0,
-        "委内瑞拉",
-        "Venezuela\n14081.797",
-        "Venezuela",
-        14081.797
-      ],
-      [
-        2020.0,
-        "越南",
-        "Vietnam\n11668.892",
-        "Vietnam",
-        11668.892
-      ]
     ]
   },
   "tooltip": {
@@ -18263,7 +17727,7 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
 };
 //endOption
 
-      //先处理下全屏与否
+      //FullScreen option
       if (option.isFullScreen) {
         $("#main3").height("100%");
         $("#main3").width("100%");
@@ -18272,14 +17736,14 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
         $("#main3").width(option.chartWidth);
       }
 
-      //实例化对象
+      //Instantiating objects
       var myChart;
       if (!option.isSvgRender) {
         myChart = echarts.init(document.getElementById("main3"));
       } else {
         myChart = echarts.init(document.getElementById("main3"), null, { renderer: "svg" });
       }
-      //绑定echart的resize事件
+      //Bind the resize event of echart
       windowResizeEvent(() => myChart.resize());
 
       function windowResizeEvent(callback) {
@@ -18298,7 +17762,7 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
 
       var srcSource = option.dataset.source;
 
-      //如果引用了cp列,将对地图底图的数据标签cp属性进行设置
+      //If the cp column is referenced, the cp attribute is set for the data label of the map base map
       if (srcSource[0].indexOf("cp") != -1) {
         var cpIndex = srcSource[0].indexOf("cp");
         var features = echarts.getMap("CustomMap").geoJson.features;
@@ -18311,13 +17775,13 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
                 var longlan = cpStr.split(",");
                 features[index].properties.cp = [Number(longlan[0].match(/\d+\.\d*/)), Number(longlan[1].match(/\d+\.\d*/))];
               }
-              break; //某features的feature在srcSource循环中region已找到了，跳出当前循环
+              break; //The feature of a feature has been found in the region of the srcSource loop, jump out of the current loop
             }
           }
         }
       }
 
-      //如果地图数据包里有cp(字符串非数组)或center字段,将其设置为ECharts所调用的cp属性
+      //If there is a cp (string not array) or center field in the map packet, set it to the cp attribute called by ECharts
       var features = echarts.getMap("CustomMap").geoJson.features;
       for (let index = 0; index < features.length; index++) {
         var cp = features[index].properties.cp;
@@ -18341,7 +17805,7 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
 
       var timelineObj = _.get(option, "timeline");
 
-      //循环option产生新的数据和标题
+      //Loopopoption generates new data and headers
       var data = _.tail(option.dataset.source);
       var arr = Enumerable.from(data);
       var grps = arr.groupBy((s) => s[0]);
@@ -18351,20 +17815,20 @@ function (paras) { return 'Country：'+paras.data[2]+'<br/>'+
       grps.forEach((grp) => {
         let itemName = grp.key();
         timelineData.push(itemName);
-        let opt = _.omit(_.cloneDeep(option), "timeline"); //复制后剔除原来option的timeline对象
-        // opt = _.omit(opt, "series[0].labelLayout"); //复制后剔除原来option的timeline对象
+        let opt = _.omit(_.cloneDeep(option), "timeline"); //The timeline object of the original option is removed after copying
+        // opt = _.omit(opt, "series[0].labelLayout"); //The timeline object of the original option is removed after copying
         var itemData = [];
-        itemData.push(_.tail(_.head(option.dataset.source))); //标题行，去掉首个元素
-        grp.forEach((s) => itemData.push(_.tail(s))); //去除第一列分类列，将剩下的装入itemData数组中
+        itemData.push(_.tail(_.head(option.dataset.source))); //Header row, remove first element
+        grp.forEach((s) => itemData.push(_.tail(s))); //Remove the first category column and load the rest into the itemData array
 
         opt.dataset.source = itemData;
         opt.title.text = option.title.text.replace("{变量}", itemName);
         itemOptions.push(opt);
       });
 
-      timelineObj.data = timelineData; //将时间轴项目更新数组
+      timelineObj.data = timelineData; //Update timeline items to an array
 
-      //这里写timeline的数据源处理
+      //Write timeline's data source processing here
       var baseOption = {
         timeline: timelineObj
       };

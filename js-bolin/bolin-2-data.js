@@ -319,174 +319,18 @@ var option ={
       "encode": {
         "x": 0,
         "y": 2
-      },
-      "markPoint": {
-        "data": [
-          {
-            "name": "最大值",
-            "type": "max",
-            "symbol": "circle",
-            "symbolSize": 8,
-            "label": {
-              "show": true,
-              "position": "top",
-              "distance": 5,
-              "color": "inherit",
-              "textBorderWidth": 0,
-              "fontSize": 12,
-              "formatter": "{b}:{c}"
-            }
-          },
-          {
-            "name": "最小值",
-            "type": "min",
-            "symbol": "circle",
-            "symbolSize": 8,
-            "label": {
-              "show": true,
-              "position": "bottom",
-              "distance": 5,
-              "color": "inherit",
-              "textBorderWidth": 0,
-              "fontSize": 12,
-              "formatter": "{b}:{c}"
-            }
-          },
-          {
-            "name": "平均值",
-            "type": "average",
-            "symbol": "circle",
-            "symbolSize": 8,
-            "label": {
-              "show": true,
-              "position": "right",
-              "distance": 5,
-              "color": "inherit",
-              "textBorderWidth": 0,
-              "fontSize": 12,
-              "formatter": "{b}:{c}"
-            }
-          }
-        ]
-      },
-      "markLine": {
-        "symbol": [
-          "none",
-          "none"
-        ],
-        "symbolSize": 10,
-        "data": [
-          {
-            "name": "平均值",
-            "isType": true,
-            "type": "average",
-            "yAxis": 100,
-            "precision": 2,
-            "label": {
-              "show": true,
-              "position": "end",
-              "distance": 5,
-              "color": "inherit",
-              "textBorderWidth": 0,
-              "fontSize": 12,
-              "formatter": "{b}:{c}"
-            },
-            "lineStyle": {
-              "width": 1,
-              "type": "dashed",
-              "color": "inherit",
-              "opacity": "1"
-            }
-          }
-        ]
-      },
-      "markArea": {
-        "data": [
-          {
-            "0": {
-              "xAxisStartValue": 0,
-              "yAxisStartValue": 0,
-              "itemStyle": {
-                "color": "red",
-                "borderWidth": 0,
-                "opacity": 0.5
-              },
-              "label": {
-                "show": true,
-                "fontSize": 20,
-                "color": "blue",
-                "textBorderWidth": 0,
-                "position": "inside",
-                "distance": 5,
-                "formatter": "涨得很猛"
-              }
-            },
-            "1": {
-              "xAxisEndValue": 0,
-              "yAxisEndValue": 0
-            },
-            "isxAxis": true
-          }
-        ]
       }
     }
   ]
 };
 //endOption
 
-      let unitValue;
-      switch (option.series[0].label.unit) {
-        case "千":
-          unitValue = 1000;
-          break;
-        case "万":
-          unitValue = 10000;
-          break;
-        case "百万":
-          unitValue = 1000000;
-          break;
-        case "百万":
-          unitValue = 1000000;
-          break;
-        case "亿":
-          unitValue = 100000000;
-          break;
-        case "十亿":
-          unitValue = 1000000000;
-          break;
-        default:
-          unitValue = 1;
-          break;
-      }
 
-      //当单位不是1时，要做转换数据源
-      if (unitValue != 1) {
-        let dstSource = [];
-        let srcHeaders = option.dataset.source[0];
-        let srcSourceData = _.tail(option.dataset.source);
-
-        dstSource.push(srcHeaders);
-
-        for (let index = 0; index < srcSourceData.length; index++) {
-          const row = srcSourceData[index];
-          //第2列开始
-          let dstRow = [];
-          dstRow.push(row[0]);
-          for (let icol = 1; icol < row.length; icol++) {
-            const cell = row[icol];
-            dstRow.push(cell / unitValue);
-          }
-
-          dstSource.push(dstRow);
-        }
-        //重新赋值新的单位处理过的数据
-        option.dataset.source = dstSource;
-      }
 
       let headers = option.dataset.source[0];
       let srcData = _.tail(option.dataset.source);
 
-      //设置下数据标签小数点和百分比格式
+      //Set the decimal point and percentage format of the lower data label
       option.series[0].label.formatter = function (params) {
         let value;
         if (option.extraSetting.isVerticalLine) {
@@ -503,134 +347,16 @@ var option ={
         }
       };
 
-      //设置下辅助点、线、面
-      if (!option.extraSetting.hasMarkPoint) {
-        _.omit(option, "series[0].markPoint");
-      } else {
-        for (let index = 0; index < option.series[0].markLine.data.length; index++) {
-          const element = option.series[0].markLine.data[index];
-          //formatter的换行处理一下
-          element.label.formatter = element.label.formatter.replace(/\\n/g, "\n");
-        }
-      }
 
-      if (!option.extraSetting.hasMarkLine) {
-        _.omit(option, "series[0].markLine");
-      } else {
-        //删除一下手工指定还是内置type
-        for (let index = 0; index < option.series[0].markLine.data.length; index++) {
-          const element = option.series[0].markLine.data[index];
-          if (element.isType) {
-            _.omit(option, `series[0].markLine.data[${index}].yAxis`);
-          } else {
-            _.omit(option, `series[0].markLine.data[${index}].type`);
-          }
-          //formatter的换行处理一下
-          element.label.formatter = element.label.formatter.replace(/\\n/g, "\n");
-        }
-      }
 
-      if (!option.extraSetting.hasMarkArea) {
-        _.omit(option, "series[0].markArea");
-      } else {
-        //重新设置下纵坐标或横坐标，并将label和itemstyle属性放到0对象里
-        for (let index = 0; index < option.series[0].markArea.data.length; index++) {
-          const element = option.series[0].markArea.data[index];
-          if (element.isxAxis) {
-            let startValueStr = element["0"].xAxisStartValue;
-            let endValueStr = element["1"].xAxisEndValue;
-
-            let axisStart;
-            let axisEnd;
-
-            if (startValueStr != "") {
-              if (isNaN(startValueStr)) {
-                if (dayjs(startValueStr).isValid()) {
-                  let dateValues = srcData.map((s) => dayjs(s[0]).valueOf());
-                  dateValues.sort();
-                  axisStart = _.sortedIndex(dateValues, dayjs(startValueStr).valueOf());
-                } else {
-                  axisStart = srcData.map((s) => s[0]).indexOf(startValueStr);
-                }
-              } else {
-
-                axisStart = Number(startValueStr);
-
-                // if (option.xAxis.type == "value") {
-                //   //补充一个逻辑，当为数字类型坐标轴时，仍然需要算排序
-                //   let dateValues = srcData.map((s) => s[0]);
-                //   dateValues.sort();
-                //   axisStart = _.sortedIndex(dateValues, Number(startValueStr));
-                // } else {
-                //   axisStart = Number(startValueStr);
-                // }
-              }
-            }
-
-            if (endValueStr != "") {
-              if (isNaN(endValueStr)) {
-                if (dayjs(endValueStr).isValid()) {
-                  let dateValues = srcData.map((s) => dayjs(s[0]).valueOf());
-                  let valueIndex = dateValues.indexOf(dayjs(endValueStr).valueOf());
-                  if (dateValues.indexOf(dayjs(endValueStr).valueOf()) == -1) {
-                    //如果它是比最大值还大，它的位置是最大值的下一位，这里减1处理
-                    //同样地当比最大值要小时，也需要将它的位置减1，引用到比它小的值作为下界
-                    axisEnd = _.sortedIndex(dateValues, dayjs(endValueStr).valueOf()) - 1;
-                  } else {
-                    axisEnd = valueIndex;
-                  }
-                } else {
-                  axisEnd = srcData.map((s) => s[0]).indexOf(endValueStr);
-                }
-              } else {
-                axisEnd = Number(endValueStr);
-                // if (option.xAxis.type == "value") {
-                //   //补充一个逻辑，当为数字类型坐标轴时，仍然需要算排序
-                //   let dateValues = srcData.map((s) => s[0]);
-                //   dateValues.sort();
-                //   axisEnd = _.sortedIndex(dateValues, Number(endValueStr)) - 1;
-                // } else {
-                //   axisEnd = Number(endValueStr);
-                // }
-              }
-            }
-
-            if (option.extraSetting.isVerticalLine) {
-              element["0"].yAxis = axisStart;
-              element["1"].yAxis = axisEnd;
-            } else {
-              element["0"].xAxis = axisStart;
-              element["1"].xAxis = axisEnd;
-            }
-          } else {
-            if (option.extraSetting.isVerticalLine) {
-              element["0"].xAxis = element["0"].xAxisStartValue;
-              element["1"].xAxis = element["1"].xAxisEndValue;
-            } else {
-              element["0"].yAxis = element["0"].yAxisStartValue;
-              element["1"].yAxis = element["1"].yAxisEndValue;
-            }
-          }
-          //formatter的换行处理一下
-          element["0"].label.formatter = element["0"].label.formatter.replace(/\\n/g, "\n");
-        }
-      }
-
-      //是否面积图
-      if (option.extraSetting.isAreaChart) {
-        option.series[0].areaStyle = {
-          opacity: option.extraSetting.areaOpacity
-        };
-      }
-
-      //设置下阶梯属性
+      //Set the lower step property
       if (!option.extraSetting.isAreaChart && option.series[0].isStep) {
         option.series[0].step = "middle";
       } else {
         option.series[0].step = false;
       }
 
-      //坐标轴标签设置，只有为文本时才会进行格式化
+      //Coordinate axis label setting, formatting only when it is text
       if (option.xAxis.type == "category") {
         if (option.extraSetting.axisLabelStr != null && option.extraSetting.axisLabelStr != "") {
           let axisLabelFunc = function (value, index) {
@@ -653,7 +379,7 @@ var option ={
         }
       }
 
-      //设置下dataZoom的坐标轴引用引用
+      //Set the axis reference reference of the lower dataZoom
       if (option.extraSetting.isVerticalLine) {
         option.dataZoom[0].yAxisIndex = 0;
         option.dataZoom[1].yAxisIndex = 0;
@@ -662,14 +388,14 @@ var option ={
         option.dataZoom[1].xAxisIndex = 0;
       }
 
-      //设置下dataZoom的显示属性
+      //Set the display properties of the dataZoom
       if (option.dataZoom[1].show) {
         option.dataZoom[0].disabled = false;
       } else {
         option.dataZoom[0].disabled = true;
       }
 
-      //坐标最大最小值
+      //Coordinate maximum and minimum values
       if (!option.yAxis.isSettingMinAuto) {
         option.yAxis.min = option.yAxis.minManual;
       }
@@ -678,7 +404,7 @@ var option ={
         option.yAxis.max = option.yAxis.maxManual;
       }
 
-      //处理下dataZoom的初始值结束值
+      //Handle the initial value of the end value of the dataZoom
       let startValueStr = option.dataZoom[0].startValueStr;
       let endValueStr = option.dataZoom[0].endValueStr;
       let axisStart;
@@ -700,14 +426,7 @@ var option ={
 
           axisStart = Number(startValueStr);
 
-          // if (option.xAxis.type == "value") {
-          //   //补充一个逻辑，当为数字类型坐标轴时，仍然需要算排序
-          //   let dateValues = srcData.map((s) => s[0]);
-          //   dateValues.sort();
-          //   axisStart = _.sortedIndex(dateValues, Number(startValueStr));
-          // } else {
-          //   axisStart = Number(startValueStr);
-          // }
+         
         }
       }
 
@@ -720,8 +439,8 @@ var option ={
               let dateValues = srcData.map((s) => dayjs(s[0]).valueOf());
               let valueIndex = dateValues.indexOf(dayjs(endValueStr).valueOf());
               if (dateValues.indexOf(dayjs(endValueStr).valueOf()) == -1) {
-                //如果它是比最大值还大，它的位置是最大值的下一位，这里减1处理
-                //同样地当比最大值要小时，也需要将它的位置减1，引用到比它小的值作为下界
+                //If it is greater than the maximum value, its position is the next place of the maximum value, here minus 1 processing
+                //Similarly, when it is smaller than the maximum value, it is necessary to subtract 1 from its position and refer to a value smaller than it as the lower bound
                 axisEnd = _.sortedIndex(dateValues, dayjs(endValueStr).valueOf()) - 1;
               } else {
                 axisEnd = valueIndex;
@@ -738,49 +457,9 @@ var option ={
       option.dataZoom[0].startValue = axisStart;
       option.dataZoom[0].endValue = axisEnd;
 
-      // if (startValueStr != "") {
-      //   if (isNaN(startValueStr)) {
-      //     if (dayjs(startValueStr).isValid) {
-      //       let dateValues = srcData.map((s) => dayjs(s[0]).valueOf());
-      //       dateValues.sort();
-      //       option.dataZoom[0].startValue = _.sortedIndex(dateValues, dayjs(startValueStr).valueOf());
-      //     } else {
-      //       option.dataZoom[0].startValue = srcData.map((s) => s[0]).indexOf(startValueStr);
-      //     }
-      //   } else {
-      //     option.dataZoom[0].startValue = Number(startValueStr);
-      //   }
-      // }
 
-      // if (endValueStr != "") {
-      //   if (isNaN(endValueStr)) {
-      //     if (dayjs(endValueStr).isValid) {
-      //       let dateValues = srcData.map((s) => dayjs(s[0]).valueOf());
-      //       let valueIndex = dateValues.indexOf(dayjs(endValueStr).valueOf());
-      //       if (dateValues.indexOf(dayjs(endValueStr).valueOf()) == -1) {
-      //         //如果它是比最大值还大，它的位置是最大值的下一位，这里减1处理
-      //         //同样地当比最大值要小时，也需要将它的位置减1，引用到比它小的值作为下界
-      //         option.dataZoom[0].endValue = _.sortedIndex(dateValues, dayjs(endValueStr).valueOf()) - 1;
-      //       } else {
-      //         option.dataZoom[0].endValue = valueIndex;
-      //       }
-      //     } else {
-      //       option.dataZoom[0].endValue = srcData.map((s) => s[0]).indexOf(endValueStr);
-      //     }
-      //   } else {
-      //     option.dataZoom[0].endValue = Number(endValueStr);
-      //   }
-      // }
 
-      //蛇形折线图时要转换下坐标轴
-      let xAxisObj = _.cloneDeep(option.xAxis);
-      let yAxisObj = _.cloneDeep(option.yAxis);
-      if (option.extraSetting.isVerticalLine) {
-        option.xAxis = yAxisObj;
-        option.yAxis = xAxisObj;
-      }
-
-      //先处理下全屏与否
+      //First deal with the full screen or not
       if (option.isFullScreen) {
         $("#main4").height("100%");
         $("#main4").width("100%");
@@ -788,7 +467,7 @@ var option ={
         $("#main4").height(option.chartHeigth);
         $("#main4").width(option.chartWidth);
       }
-      //实例化对象
+      //Instantiating objects
       var myChart;
       if (!option.isSvgRender) {
         myChart = echarts.init(document.getElementById("main4"));
@@ -796,13 +475,13 @@ var option ={
         myChart = echarts.init(document.getElementById("main4"), null, { renderer: "svg" });
       }
 
-      //最开始创建图表
+      //Creating a chart at the beginning
       if (option.extraSetting.stackType == "percentStack") {
         let selectDims = _.tail(headers);
         SettingNewDatasource(selectDims);
       } else {
         SettingSeriesAndGradientColor();
-        //关一下图例，如果只有一个系列
+        //Off the legend, if there is only one series
         if (option.series.length == 1) {
           option.legend.show = false;
         }
@@ -810,7 +489,7 @@ var option ={
         myChart.setOption(option);
       }
 
-      //绑定echart的resize事件
+      //Bind the resize event of echart
       windowResizeEvent(() => {
         myChart.resize();
       });
@@ -861,13 +540,13 @@ var option ={
 
             let total = _.sum(newDataRow);
             newDataRow.forEach((item) => {
-              newRow.push(item / total); //计算百分比
+              newRow.push(item / total); //Calculate the percentage
             });
 
             newData.push(newRow);
           });
 
-          //设置下纵坐标的范围
+          //Set the range of the lower vertical coordinate
           if (option.extraSetting.isVerticalLine) {
             option.xAxis.min = 0;
             option.xAxis.max = 1;
@@ -887,13 +566,13 @@ var option ={
       function SettingSeriesAndGradientColor() {
         let headers = option.dataset.source[0];
         let srcSourceData = _.tail(option.dataset.source);
-        //生成多个数据系列
+        //Generate multiple data series
         let seriesArr = [];
         for (let index = 1; index < headers.length; index++) {
           const seriesName = headers[index];
           let newSer = _.cloneDeep(option.series[0]);
           newSer.name = seriesName;
-          //将数据装入series引用的data数组，不能用encode,因为时间轴不支持
+          //Load the data into the data array referenced by the series, you can't use encode, because the timeline doesn't support it.
           seriesData = [];
           for (let irow = 0; irow < srcSourceData.length; irow++) {
             const row = srcSourceData[irow];
@@ -923,17 +602,17 @@ var option ={
               colorStops: [
                 {
                   offset: 0,
-                  color: option.color[index - 1] // 0% 处的颜色
+                  color: option.color[index - 1] // Color at 0%
                 },
                 {
                   offset: 1,
                   color: option.extraSetting.sencondColor //"white" 100% 处的颜色
                 }
               ],
-              global: false // 缺省为 false
+              global: false // Default is false
             };
             newSer.areaStyle.color = gradientColor;
-            newSer.areaStyle.opacity = 1; //把透明色重新设置为1
+            newSer.areaStyle.opacity = 1; //Reset the transparency color to 1
           }
 
           seriesArr.push(newSer);
