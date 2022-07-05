@@ -112,7 +112,7 @@ function plot2() {
             divtip2.transition()
                 .duration(200)
                 .style("opacity", .9);
-            divtip2.html("Renewables Per Fossils: " + d.Renewables_Per_Fossils)
+            divtip2.html("Renewables Per Fossils: " + d.Renewables_Per_Fossils.toFixed(3))
                 .style("left", (d3.event.pageX) + "px")
                 .style("top", (d3.event.pageY - 50) + "px");
         })
